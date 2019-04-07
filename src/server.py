@@ -45,6 +45,8 @@ class Server:
             if event.type == VkBotEventType.MESSAGE_NEW:
                 if event.object.text == 'Диктант':
                     self.choose_dictation(event.object.peer_id)
+                elif event.object.text == 'О боте':
+                    self.send_msg(event.object.peer_id, 'Разработано Drackeland Technology', 2)
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
