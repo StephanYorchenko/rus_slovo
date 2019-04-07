@@ -5,7 +5,7 @@
             {
                 "action": {
                     "type": "text",
-                    "label": "добылА"
+                    "label": "во времЯ"
                 },
                 "color": "default"
             }
@@ -14,7 +14,7 @@
             {
                 "action": {
                     "type": "text",
-                    "label": "добЫла"
+                    "label": "вО время"
                 },
                 "color": "default"
             }
@@ -23,7 +23,7 @@
             {
                 "action": {
                     "type": "text",
-                    "label": "дОбыла"
+                    "label": "во врЕмя"
                 },
                 "color": "default"
             }
