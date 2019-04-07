@@ -5,7 +5,7 @@
             {
                 "action": {
                     "type": "text",
-                    "label": "давнИшний"
+                    "label": "добылА"
                 },
                 "color": "default"
             }
@@ -14,7 +14,7 @@
             {
                 "action": {
                     "type": "text",
-                    "label": "давнишнИй"
+                    "label": "добЫла"
                 },
                 "color": "default"
             }
@@ -23,7 +23,7 @@
             {
                 "action": {
                     "type": "text",
-                    "label": "дАвнишний"
+                    "label": "дОбыла"
                 },
                 "color": "default"
             }

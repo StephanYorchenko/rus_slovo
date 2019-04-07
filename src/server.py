@@ -71,33 +71,11 @@ class Server:
                     elif self.cur_keyboard == 3:
                         self.cur_keyboard = 1
                         self.cur_mes = 'type_dictation'
-                self.send_msg(event.object.peer_id, self.messages[], self.cur_keyboard)
+                self.send_msg(event.object.peer_id, self.messages[self.cur_mes], self.cur_keyboard)
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
         return self.vk_api.users.get(user_id=user_id)[0]['first_name']
-
-    def choose_dictation(self, peer_id):
-        print('@cd')
-        self.send_msg(peer_id, 'Какой диктант предпочтёте писать?', 1)
-        for event in self.long_poll.listen():
-            if event.type == VkBotEventType.MESSAGE_NEW:
-                if event.object.text == 'Назад':
-                    self.home(peer_id)
-                elif event.object.text == 'Орфоэпический':
-                    self.choose_mode_orfo(peer_id)
-                    break
-
-    def choose_mode_orfo(self, peer_id):
-        print('@choose mode')
-        self.send_msg(peer_id, 'Потренируемся или напишем контрольную?', 3)
-        for event in self.long_poll.listen():
-            if event.type == VkBotEventType.MESSAGE_NEW:
-                if event.object.text == 'Назад':
-                    self.choose_dictation(peer_id)
-                elif event.object.text == 'Контрольная':
-                    self.start_contest(peer_id)
-                    break
 
     def start_contest(self, peer_id):
         res = 0
