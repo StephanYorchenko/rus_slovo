@@ -14,10 +14,17 @@ class Server:
                  'src/keyboard_none.json',
                  'src/keyboard_mode_dictation.json',
                  'src/keyboard_test.json']
+    messages = {'start':'Рад Вас видеть!',
+                'home': 'Вы находитесь в главном меню',
+                'about': 'Разработано Drackeland Technology',
+                'type_dictation': 'Какой диктант предпочтёте писать?',
+                'mode_dictation': 'Потренируемся или напишем контрольную?'
+                }
 
     def __init__(self, token, group_id, server_name: str = "Empty"):
         self.username = ''
-        self.users = defaultdict(str)
+        self.cur_keyboard = 0
+        self.cur_mes = 'start'
         self.server_name = server_name
         self.vk = vk_api.VkApi(token=token)
         self.long_poll = VkBotLongPoll(self.vk, group_id)
@@ -32,21 +39,39 @@ class Server:
         self.random_id += 1
 
     def start(self):
+        k = 0
         for event in self.long_poll.listen():  # Слушаем сервер
             if event.type == VkBotEventType.MESSAGE_NEW:
                 self.username = self.get_user_name(event.object.from_id)
-                self.send_msg(event.object.peer_id, 'Рад Вас видеть!', 2)
-                self.home(event.object.peer_id)
+                self.send_msg(event.object.peer_id, self.messages[self.cur_mes], 2)
+                self.cur_mes = 'home'
+                k = event.object.peer_id
+                break
+        self.home(k)
 
     def home(self, peer_id):
         print('@home')
-        self.send_msg(peer_id, 'Вы находитесь в главном меню', 0)
-        for event in self.long_poll.listen():  # Слушаем сервер
+        self.send_msg(peer_id, self.messages[self.cur_mes], self.cur_keyboard)
+        for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
                 if event.object.text == 'Диктант':
-                    self.choose_dictation(event.object.peer_id)
+                    self.cur_keyboard = 1
+                    self.cur_mes = 'type_dictation'
                 elif event.object.text == 'О боте':
-                    self.send_msg(event.object.peer_id, 'Разработано Drackeland Technology', 2)
+                    self.send_msg(event.object.peer_id, self.messages['about'], 2)
+                elif event.object.text == 'Орфоэпический':
+                    self.cur_keyboard = 3
+                    self.cur_mes = 'mode_dictation'
+                elif event.object.text == 'Контрольная':
+                    self.start_contest(peer_id)
+                elif event.object.text == 'Назад' :
+                    if self.cur_keyboard == 1:
+                        self.cur_keyboard = 0
+                        self.cur_mes = 'home'
+                    elif self.cur_keyboard == 3:
+                        self.cur_keyboard = 1
+                        self.cur_mes = 'type_dictation'
+                self.send_msg(event.object.peer_id, self.messages[], self.cur_keyboard)
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
