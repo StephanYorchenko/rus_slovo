@@ -1,0 +1,41 @@
+{
+    "one_time": false,
+    "buttons": [
+        [
+            {
+                "action": {
+                    "type": "text",
+                    "label": "дОзвонятся"
+                },
+                "color": "default"
+            }
+        ],
+        [
+            {
+                "action": {
+                    "type": "text",
+                    "label": "дозвОнятся"
+                },
+                "color": "default"
+            }
+        ],
+        [
+            {
+                "action": {
+                    "type": "text",
+                    "label": "дозвонятсЯ"
+                },
+                "color": "default"
+            }
+        ],
+        [
+            {
+                "action": {
+                    "type": "text",
+                    "label": "дозвонЯтся"
+                },
+                "color": "default"
+            }
+        ]
+    ]
+}
