@@ -61,6 +61,7 @@ class Server:
                     self.home(peer_id)
                 elif event.object.text == 'Орфоэпический':
                     self.choose_mode_orfo(peer_id)
+                    break
 
     def choose_mode_orfo(self, peer_id):
         print('@choose mode')
@@ -71,6 +72,7 @@ class Server:
                     self.choose_dictation(peer_id)
                 elif event.object.text == 'Контрольная':
                     self.start_contest(peer_id)
+                    break
 
     def start_contest(self, peer_id):
         res = 0
