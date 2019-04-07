@@ -47,12 +47,12 @@ class Question:
                 "color": "default"
             }]
             result_dict['buttons'].append(k)
-        with open('keyboard_test.json', 'w', encoding='UTF-8') as f:
+        with open('src/keyboard_test.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
     @staticmethod
     def selector(table_name):
-        con = sqlite3.connect(r'rus_slovo.db')
+        con = sqlite3.connect(r'src/rus_slovo.db')
         sql = f'SELECT * FROM {table_name}'
         cur = con.cursor()
         c = list(cur.execute(sql))

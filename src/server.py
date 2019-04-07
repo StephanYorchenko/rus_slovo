@@ -9,11 +9,11 @@ from collections import defaultdict
 
 
 class Server:
-    keyboards = ['keyboard_home.json',
-                 'keyboard_type_dictation.json',
-                 'keyboard_none.json',
-                 'keyboard_mode_dictation.json',
-                 'keyboard_test.json']
+    keyboards = ['src/keyboard_home.json',
+                 'src/keyboard_type_dictation.json',
+                 'src/keyboard_none.json',
+                 'src/keyboard_mode_dictation.json',
+                 'src/keyboard_test.json']
 
     def __init__(self, token, group_id, server_name: str = "Empty"):
         self.username = ''

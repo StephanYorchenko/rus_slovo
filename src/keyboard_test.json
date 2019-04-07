@@ -5,7 +5,7 @@
             {
                 "action": {
                     "type": "text",
-                    "label": "дОзвонятся"
+                    "label": "давнИшний"
                 },
                 "color": "default"
             }
@@ -14,7 +14,7 @@
             {
                 "action": {
                     "type": "text",
-                    "label": "дозвОнятся"
+                    "label": "давнишнИй"
                 },
                 "color": "default"
             }
@@ -23,16 +23,7 @@
             {
                 "action": {
                     "type": "text",
-                    "label": "дозвонятсЯ"
-                },
-                "color": "default"
-            }
-        ],
-        [
-            {
-                "action": {
-                    "type": "text",
-                    "label": "дозвонЯтся"
+                    "label": "дАвнишний"
                 },
                 "color": "default"
             }
