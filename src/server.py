@@ -5,6 +5,8 @@ from vk_api.bot_longpoll import VkBotEventType
 
 from src import backend
 
+from collections import defaultdict
+
 
 class Server:
     keyboards = ['keyboard_home.json',
@@ -15,6 +17,7 @@ class Server:
 
     def __init__(self, token, group_id, server_name: str = "Empty"):
         self.username = ''
+        self.users = defaultdict(str)
         self.server_name = server_name
         self.vk = vk_api.VkApi(token=token)
         self.long_poll = VkBotLongPoll(self.vk, group_id)

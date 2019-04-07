@@ -7,12 +7,9 @@ import sqlite3
 
 
 class Question:
-    dict_words = {'августовский': 'Августовский',
-                  'агент': 'агЕнт',
-                  'алкоголь': 'алкогОль',
-                  }
 
     def __init__(self):
+        self.dict_words = self.selector('orfo_dictation')
         self.quest = random.choice(list(self.dict_words.keys()))
         self.answer = self.dict_words[self.quest]
         self.ask = self.reformat_word(self.quest)
@@ -53,5 +50,14 @@ class Question:
         with open('keyboard_test.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
-
+    @staticmethod
+    def selector(table_name):
+        con = sqlite3.connect(r'rus_slovo.db')
+        sql = f'SELECT * FROM {table_name}'
+        cur = con.cursor()
+        c = list(cur.execute(sql))
+        cur.fetchall()
+        cur.close()
+        con.close()
+        return {x[1]: x[2] for x in c}
 
