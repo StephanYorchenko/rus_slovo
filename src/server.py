@@ -55,9 +55,9 @@ class Server:
                 if event.object.text == 'Назад':
                     self.home(peer_id)
                 elif event.object.text == 'Орфоэпический':
-                    self.choose_mode(peer_id, 'orfo')
+                    self.choose_mode_orfo(peer_id)
 
-    def choose_mode(self, peer_id, type_dictation):
+    def choose_mode_orfo(self, peer_id):
         print('@choose mode')
         self.send_msg(peer_id, 'Потренируемся или напишем контрольную?', 3)
         for event in self.long_poll.listen():
@@ -65,9 +65,9 @@ class Server:
                 if event.object.text == 'Назад':
                     self.choose_dictation(peer_id)
                 elif event.object.text == 'Контрольная':
-                    self.start_contest(type_dictation, peer_id)
+                    self.start_contest(peer_id)
 
-    def start_contest(self, type_dictation, peer_id):
+    def start_contest(self, peer_id):
         res = 0
         for i in range(32):
             print(i, 32, sep='/')

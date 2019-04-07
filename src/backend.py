@@ -2,12 +2,15 @@
 
 import random
 import json
+import sqlite3
+
 
 
 class Question:
     dict_words = {'августовский': 'Августовский',
                   'агент': 'агЕнт',
-                  'алкоголь': 'алкогОль'}
+                  'алкоголь': 'алкогОль',
+                  }
 
     def __init__(self):
         self.quest = random.choice(list(self.dict_words.keys()))
@@ -36,17 +39,17 @@ class Question:
     @staticmethod
     def get_json_keyboard(list_answers):
         result_dict = {'one_time': False,
-                       'buttons': [[]]}
+                       'buttons': []}
         for i in list_answers:
             print(i)
-            k = {
+            k = [{
                 "action": {
                     "type": "text",
                     "label": i
                 },
                 "color": "default"
-            }
-            result_dict['buttons'][0].append(k)
+            }]
+            result_dict['buttons'].append(k)
         with open('keyboard_test.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
