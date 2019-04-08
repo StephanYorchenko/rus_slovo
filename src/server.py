@@ -14,7 +14,7 @@ class Server:
                  'src/keyboard_none.json',
                  'src/keyboard_mode_dictation.json',
                  'src/keyboard_test.json']
-    messages = {'start':'Рад Вас видеть!',
+    messages = {'start': 'Рад Вас видеть!',
                 'home': 'Вы находитесь в главном меню',
                 'about': 'Разработано Drackeland Technology',
                 'type_dictation': 'Какой диктант предпочтёте писать?',
@@ -89,6 +89,6 @@ class Server:
                         res += 1
                         self.send_msg(peer_id, 'Молодец', 2)
                     else:
-                        self.send_msg(peer_id, f'Увы, но правильно произносить {quest.answer}',2)
+                        self.send_msg(peer_id, f'Увы, но правильно произносить {quest.answer}', 2)
                     break
         self.send_msg(peer_id, f'Ваш результат {res}/32', 0)
