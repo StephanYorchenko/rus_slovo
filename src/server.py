@@ -54,6 +54,7 @@ class Server:
         self.send_msg(peer_id, self.messages[self.cur_mes], self.cur_keyboard)
         for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
+                print(self.get_user_name(event.object.peer_id))
                 if event.object.text == 'Диктант':
                     self.cur_keyboard = 1
                     self.cur_mes = 'type_dictation'
