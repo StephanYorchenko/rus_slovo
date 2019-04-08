@@ -76,7 +76,7 @@ class Server:
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
-        return self.vk_api.users.get(user_id=user_id)[0]['first_name']
+        return self.vk_api.users.get(user_id=user_id)[0]
 
     def start_contest(self, peer_id):
         res = 0
