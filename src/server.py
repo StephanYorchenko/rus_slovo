@@ -63,7 +63,7 @@ class Server:
                     self.cur_keyboard = 3
                     self.cur_mes = 'mode_dictation'
                 elif event.object.text == 'Контрольная':
-                    self.start_contest(peer_id)
+                    self.start_contest(event.object.peer_id)
                 elif event.object.text == 'Назад':
                     if self.cur_keyboard == 1:
                         self.cur_keyboard = 0
