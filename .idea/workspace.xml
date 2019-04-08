@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99dcdc44-14c5-4fa8-8815-ed20bb3af454" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rus_slovo.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/rus_slovo.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+            <state relative-caret-position="135">
+              <caret line="56" column="63" lean-forward="true" selection-start-line="56" selection-start-column="63" selection-end-line="56" selection-end-column="63" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -114,7 +114,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="63" />
     <option name="y" value="88" />
     <option name="width" value="642" />
@@ -309,7 +309,7 @@
       <workItem from="1554549368561" duration="19391000" />
       <workItem from="1554616655707" duration="9902000" />
       <workItem from="1554646690144" duration="5801000" />
-      <workItem from="1554736720669" duration="889000" />
+      <workItem from="1554736720669" duration="2013000" />
     </task>
     <task id="LOCAL-00001" summary="Some little fixes">
       <created>1554621648055</created>
@@ -385,7 +385,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40735000" />
+    <option name="totallyTimeSpent" value="41859000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -397,7 +397,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="59" y="27" width="1307" height="741" extended-state="7" />
+    <frame x="59" y="27" width="1307" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497006" visible="true" weight="0.22363204" />
@@ -574,8 +574,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+        <state relative-caret-position="135">
+          <caret line="56" column="63" lean-forward="true" selection-start-line="56" selection-start-column="63" selection-end-line="56" selection-end-column="63" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
