@@ -34,7 +34,7 @@ class Question:
         return res_list
 
     @staticmethod
-    def get_json_keyboard(list_answers):
+    def get_json_keyboard(list_answers, exit_but=None):
         result_dict = {'one_time': False,
                        'buttons': []}
         for i in list_answers:
@@ -47,6 +47,17 @@ class Question:
                 "color": "default"
             }]
             result_dict['buttons'].append(k)
+        if exit_but:
+            exit = [
+                    {
+                    'action':{
+                        'type': 'text',
+                        'label': 'Стоп'
+                        },
+                    'color':'default'
+                    }
+                    ]
+            result_dict['buttons'].append(exit)
         with open('src/keyboard_test.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
