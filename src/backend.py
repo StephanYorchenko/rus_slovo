@@ -13,7 +13,7 @@ class Question:
         self.quest = random.choice(list(self.dict_words.keys()))
         self.answer = self.dict_words[self.quest]
         self.ask = self.reformat_word(self.quest)
-        self.get_json_keyboard(self.get_list_answers())
+        self.get_json_keyboard(self.get_list_answers(), True)
 
     @staticmethod
     def reformat_word(word, k=None):
@@ -34,7 +34,7 @@ class Question:
         return res_list
 
     @staticmethod
-    def get_json_keyboard(list_answers, exit_but=None):
+    def get_json_keyboard(list_answers, exit_but=False):
         result_dict = {'one_time': False,
                        'buttons': []}
         for i in list_answers:
