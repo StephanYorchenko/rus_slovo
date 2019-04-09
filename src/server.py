@@ -3,6 +3,8 @@ import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll
 from vk_api.bot_longpoll import VkBotEventType
 
+import sqlite3
+
 from src import backend
 
 from collections import defaultdict
@@ -20,6 +22,7 @@ class Server:
                 'type_dictation': 'Какой диктант предпочтёте писать?',
                 'mode_dictation': 'Потренируемся или напишем контрольную?'
                 }
+    users = {}
 
     def __init__(self, token, group_id, server_name: str = "Empty"):
         self.username = ''
@@ -54,7 +57,7 @@ class Server:
         self.send_msg(peer_id, self.messages[self.cur_mes], self.cur_keyboard)
         for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
-                print(self.get_user_name(event.object.peer_id))
+                self.get_user_name(event.object.peer_id)
                 if event.object.text == 'Диктант':
                     self.cur_keyboard = 1
                     self.cur_mes = 'type_dictation'
@@ -76,7 +79,12 @@ class Server:
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
-        return self.vk_api.users.get(user_id=user_id)[0]
+        info = self.vk_api.users.get(user_id=user_id)[0]
+        if info['id'] not in self.users.keys():
+            self.users[info['id']]=User(info['id'],
+                                        info['first_name'],
+                                        info['last_name'])
+
 
     def start_contest(self, peer_id):
         res = 0
@@ -93,3 +101,13 @@ class Server:
                         self.send_msg(peer_id, f'Увы, но правильно произносить {quest.answer}', 2)
                     break
         self.send_msg(peer_id, f'Ваш результат {res}/32', 0)
+
+
+class User:
+    def __init__(self, vk_id, first_name, last_name, action_id=0, cur_answer=None, group_id=None):
+        self.vk_id = vk_id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.action_id = action_id
+        self.cur_answer = cur_answer
+        self.group_id = group_id
