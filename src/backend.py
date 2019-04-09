@@ -13,7 +13,7 @@ class Question:
         self.quest = random.choice(list(self.dict_words.keys()))
         self.answer = self.dict_words[self.quest]
         self.ask = self.reformat_word(self.quest)
-        self.get_json_keyboard(self.get_list_answers())
+        self.get_json_keyboard(self.get_list_answers(), True)
 
     @staticmethod
     def reformat_word(word, k=None):
@@ -34,7 +34,7 @@ class Question:
         return res_list
 
     @staticmethod
-    def get_json_keyboard(list_answers):
+    def get_json_keyboard(list_answers, exit_but=False):
         result_dict = {'one_time': False,
                        'buttons': []}
         for i in list_answers:
@@ -47,6 +47,17 @@ class Question:
                 "color": "default"
             }]
             result_dict['buttons'].append(k)
+        if exit_but:
+            exit = [
+                    {
+                    'action':{
+                        'type': 'text',
+                        'label': 'Стоп'
+                        },
+                    'color':'default'
+                    }
+                    ]
+            result_dict['buttons'].append(exit)
         with open('src/keyboard_test.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 

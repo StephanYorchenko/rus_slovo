@@ -97,7 +97,9 @@ class Server:
                     if quest.task(event.object.text):
                         res += 1
                         self.send_msg(peer_id, 'Молодец', 2)
-                    else:
+                   elif event.object.text == 'Стоп':
+                       break
+                   else:
                         self.send_msg(peer_id, f'Увы, но правильно произносить {quest.answer}', 2)
                     break
         self.send_msg(peer_id, f'Ваш результат {res}/32', 0)
