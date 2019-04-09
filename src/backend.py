@@ -54,7 +54,7 @@ class Question:
                         'type': 'text',
                         'label': 'Стоп'
                         },
-                    'color':'default'
+                    'color':'negative'
                     }
                     ]
             result_dict['buttons'].append(exit)
