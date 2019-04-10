@@ -119,6 +119,7 @@ class Server:
                           f'{self.vk_api.users.get(user_id=i)[0]["first_name"]},бот освободился, '
                           f'успей потренироваться!',
                           2)
+        self.queque = []
         self.active = 0
 
 
