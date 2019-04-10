@@ -33,7 +33,8 @@ class Server:
         self.long_poll = VkBotLongPoll(self.vk, group_id)
         self.vk_api = self.vk.get_api()
         self.random_id = 0
-        self.active = False
+        self.active = 0
+        self.queque = []
 
     def send_msg(self, send_id, message, keyboard_index):
         self.vk_api.messages.send(peer_id=send_id,
@@ -110,8 +111,14 @@ class Server:
                                       f'{self.vk_api.users.get(user_id=event.object.peer_id)[0]["first_name"]},приносим '
                                       f'извинения, но сервер занят(',
                                       2)
+                        self.queque.append(event.object.peer_id)
 
         self.send_msg(peer_id, f'Ваш результат {res}/32', 0)
+        for i in self.queque:
+            self.send_msg(i,
+                          f'{self.vk_api.users.get(user_id=i)[0]["first_name"]},бот освободился, '
+                          f'успей потренироваться!',
+                          2)
         self.active = 0
 
 
