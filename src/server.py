@@ -33,6 +33,7 @@ class Server:
         self.long_poll = VkBotLongPoll(self.vk, group_id)
         self.vk_api = self.vk.get_api()
         self.random_id = 0
+        self.active = False
 
     def send_msg(self, send_id, message, keyboard_index):
         self.vk_api.messages.send(peer_id=send_id,
@@ -45,7 +46,7 @@ class Server:
         k = 0
         for event in self.long_poll.listen():  # Слушаем сервер
             if event.type == VkBotEventType.MESSAGE_NEW:
-                self.username = self.get_user_name(event.object.from_id)
+                self.get_user_name(event.object.from_id)
                 self.send_msg(event.object.peer_id, self.messages[self.cur_mes], 2)
                 self.cur_mes = 'home'
                 k = event.object.peer_id
@@ -57,25 +58,31 @@ class Server:
         self.send_msg(peer_id, self.messages[self.cur_mes], self.cur_keyboard)
         for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
-                self.get_user_name(event.object.peer_id)
-                if event.object.text == 'Диктант':
-                    self.cur_keyboard = 1
-                    self.cur_mes = 'type_dictation'
-                elif event.object.text == 'О боте':
-                    self.send_msg(event.object.peer_id, self.messages['about'], 2)
-                elif event.object.text == 'Орфоэпический':
-                    self.cur_keyboard = 3
-                    self.cur_mes = 'mode_dictation'
-                elif event.object.text == 'Контрольная':
-                    self.start_contest(event.object.peer_id)
-                elif event.object.text == 'Назад':
-                    if self.cur_keyboard == 1:
-                        self.cur_keyboard = 0
-                        self.cur_mes = 'home'
-                    elif self.cur_keyboard == 3:
+                if not self.active or self.active == event.object.peer_id:
+                    self.get_user_name(event.object.peer_id)
+                    if event.object.text == 'Диктант':
                         self.cur_keyboard = 1
                         self.cur_mes = 'type_dictation'
-                self.send_msg(event.object.peer_id, self.messages[self.cur_mes], self.cur_keyboard)
+                    elif event.object.text == 'О боте':
+                        self.send_msg(event.object.peer_id, self.messages['about'], 2)
+                    elif event.object.text == 'Орфоэпический':
+                        self.cur_keyboard = 3
+                        self.cur_mes = 'mode_dictation'
+                    elif event.object.text == 'Контрольная':
+                        self.start_contest(event.object.peer_id)
+                    elif event.object.text == 'Назад':
+                        if self.cur_keyboard == 1:
+                            self.cur_keyboard = 0
+                            self.cur_mes = 'home'
+                        elif self.cur_keyboard == 3:
+                            self.cur_keyboard = 1
+                            self.cur_mes = 'type_dictation'
+                    self.send_msg(event.object.peer_id, self.messages[self.cur_mes], self.cur_keyboard)
+                else:
+                    self.send_msg(event.object.peer_id,
+                                  f'{self.vk_api.users.get(user_id=event.object.peer_id)[0]["first_name"]},приносим '
+                                  f'извинения, но сервер занят(',
+                                  2)
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
@@ -86,6 +93,7 @@ class Server:
                                           info['last_name'])
 
     def start_contest(self, peer_id):
+        self.active = peer_id
         res = 0
         for i in range(32):
             print(i, 32, sep='/')
@@ -102,6 +110,7 @@ class Server:
                         self.send_msg(peer_id, f'Увы, но правильно произносить {quest.answer}', 2)
                     break
         self.send_msg(peer_id, f'Ваш результат {res}/32', 0)
+        self.active = 0
 
 
 class User:
@@ -112,3 +121,21 @@ class User:
         self.action_id = action_id
         self.cur_answer = cur_answer
         self.group_id = group_id
+
+
+class UserGroup:
+    def __init__(self, data=None):
+        if data is None:
+            data = {}
+        self.data = data
+
+    @staticmethod
+    def read_from_db(table_name='Users'):
+        con = sqlite3.connect(r'src/rus_slovo.db')
+        sql = f'SELECT * FROM {table_name}'
+        cur = con.cursor()
+        c = list(cur.execute(sql))
+        cur.fetchall()
+        cur.close()
+        con.close()
+        return 0
