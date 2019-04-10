@@ -58,31 +58,26 @@ class Server:
         self.send_msg(peer_id, self.messages[self.cur_mes], self.cur_keyboard)
         for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
-                if not self.active or self.active == event.object.peer_id:
-                    self.get_user_name(event.object.peer_id)
-                    if event.object.text == 'Диктант':
+                self.get_user_name(event.object.peer_id)
+                if event.object.text == 'Диктант':
+                    self.cur_keyboard = 1
+                    self.cur_mes = 'type_dictation'
+                elif event.object.text == 'О боте':
+                    self.send_msg(event.object.peer_id, self.messages['about'], 2)
+                elif event.object.text == 'Орфоэпический':
+                    self.cur_keyboard = 3
+                    self.cur_mes = 'mode_dictation'
+                elif event.object.text == 'Контрольная':
+                    self.start_contest(event.object.peer_id)
+                elif event.object.text == 'Назад':
+                    if self.cur_keyboard == 1:
+                        self.cur_keyboard = 0
+                        self.cur_mes = 'home'
+                    elif self.cur_keyboard == 3:
                         self.cur_keyboard = 1
                         self.cur_mes = 'type_dictation'
-                    elif event.object.text == 'О боте':
-                        self.send_msg(event.object.peer_id, self.messages['about'], 2)
-                    elif event.object.text == 'Орфоэпический':
-                        self.cur_keyboard = 3
-                        self.cur_mes = 'mode_dictation'
-                    elif event.object.text == 'Контрольная':
-                        self.start_contest(event.object.peer_id)
-                    elif event.object.text == 'Назад':
-                        if self.cur_keyboard == 1:
-                            self.cur_keyboard = 0
-                            self.cur_mes = 'home'
-                        elif self.cur_keyboard == 3:
-                            self.cur_keyboard = 1
-                            self.cur_mes = 'type_dictation'
-                    self.send_msg(event.object.peer_id, self.messages[self.cur_mes], self.cur_keyboard)
-                else:
-                    self.send_msg(event.object.peer_id,
-                                  f'{self.vk_api.users.get(user_id=event.object.peer_id)[0]["first_name"]},приносим '
-                                  f'извинения, но сервер занят(',
-                                  2)
+                self.send_msg(event.object.peer_id, self.messages[self.cur_mes], self.cur_keyboard)
+
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
@@ -101,14 +96,21 @@ class Server:
             self.send_msg(peer_id, quest.quest, 4)
             for event in self.long_poll.listen():
                 if event.type == VkBotEventType.MESSAGE_NEW:
-                    if quest.task(event.object.text):
-                        res += 1
-                        self.send_msg(peer_id, 'Молодец', 2)
-                    elif event.object.text == 'Стоп':
-                        return 0
+                    if event.object.peer_id == peer_id:
+                        if quest.task(event.object.text):
+                            res += 1
+                            self.send_msg(peer_id, 'Молодец', 2)
+                        elif event.object.text == 'Стоп':
+                            return 0
+                        else:
+                            self.send_msg(peer_id, f'Увы, но правильно произносить {quest.answer}', 2)
+                        break
                     else:
-                        self.send_msg(peer_id, f'Увы, но правильно произносить {quest.answer}', 2)
-                    break
+                        self.send_msg(event.object.peer_id,
+                                      f'{self.vk_api.users.get(user_id=event.object.peer_id)[0]["first_name"]},приносим '
+                                      f'извинения, но сервер занят(',
+                                      2)
+
         self.send_msg(peer_id, f'Ваш результат {res}/32', 0)
         self.active = 0
 
