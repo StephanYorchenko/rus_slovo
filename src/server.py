@@ -67,7 +67,7 @@ class Server:
                     self.send_msg(event.object.peer_id, self.messages['about'], 2)
                 elif event.object.text == 'Орфоэпический' and user_stat == 1:
                     self.cur_mes = 'mode_dictation'
-                    self.users[event.object.peer_id] = 2
+                    self.users[event.object.peer_id] = 3
                 elif event.object.text == 'Контрольная':
                     self.start_contest(event.object.peer_id)
                 elif event.object.text == 'Назад':
