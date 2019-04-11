@@ -62,7 +62,7 @@ class Server:
                 user_stat = self.users[event.object.peer_id]
                 if event.object.text == 'Диктант' and not user_stat:
                     self.cur_mes = 'type_dictation'
-                    self.users[event.objecs.peer_id] = 1
+                    self.users[event.object.peer_id] = 1
                 elif event.object.text == 'О боте' and not user_stat:
                     self.send_msg(event.object.peer_id, self.messages['about'], 2)
                 elif event.object.text == 'Орфоэпический' and user_stat == 1:
