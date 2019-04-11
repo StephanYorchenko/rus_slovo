@@ -11,11 +11,11 @@ from collections import defaultdict
 
 
 class Server:
-    keyboards = ['src/keyboard_home.json',
-                 'src/keyboard_type_dictation.json',
-                 'src/keyboard_none.json',
-                 'src/keyboard_mode_dictation.json',
-                 'src/keyboard_test.json']
+    keyboards = ['keyboards/keyboard_home.json',
+                 'keyboards/keyboard_type_dictation.json',
+                 'keyboards/keyboard_none.json',
+                 'keyboards/keyboard_mode_dictation.json',
+                 'keyboards/keyboard_test.json']
     messages = {'start': 'Рад Вас видеть!',
                 'home': 'Вы находитесь в главном меню',
                 'about': 'Разработано Drackeland Technology',
