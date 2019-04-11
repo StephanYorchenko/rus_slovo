@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99dcdc44-14c5-4fa8-8815-ed20bb3af454" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +32,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/backend.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="1403">
               <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="72" selection-end-column="38" />
               <folding>
                 <element signature="e#25#38#0" expanded="true" />
@@ -44,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="121" column="17" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
+            <state relative-caret-position="319">
+              <caret line="112" column="64" lean-forward="true" selection-start-line="112" selection-start-column="64" selection-end-line="112" selection-end-column="64" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -100,6 +100,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -116,7 +117,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -128,6 +128,11 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/keyboards" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -287,6 +292,7 @@
       <workItem from="1554736720669" duration="3553000" />
       <workItem from="1554807397066" duration="2436000" />
       <workItem from="1554915926008" duration="3699000" />
+      <workItem from="1555003419826" duration="1461000" />
     </task>
     <task id="LOCAL-00001" summary="Some little fixes">
       <created>1554621648055</created>
@@ -421,11 +427,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554919521009</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="add keyboards directory">
+      <created>1555003601522</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1555003601522</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49534000" />
+    <option name="totallyTimeSpent" value="50995000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -438,8 +451,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="27" width="1307" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497006" visible="true" weight="0.23156226" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497006" visible="true" weight="0.23552737" />
       <window_info id="Structure" order="1" sideWeight="0.502994" side_tool="true" weight="0.26169705" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -452,7 +466,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003965" side_tool="true" weight="0.4856176" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49960348" visible="true" weight="0.9492386" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49960348" weight="0.9492386" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.53807104" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -521,7 +535,8 @@
     <MESSAGE value="Bugfix" />
     <MESSAGE value="Add some micro ficha to current version of kostyli" />
     <MESSAGE value="one another bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="one another bugfix" />
+    <MESSAGE value="add keyboards directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="add keyboards directory" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test_bot$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1554398960743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -532,28 +547,28 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test.ipynb" />
-    <entry file="file://$PROJECT_DIR$/src/keyboard_home.json">
+    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_home.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/keyboard_none.json">
+    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_none.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/keyboard_mode_dictation.json">
+    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_mode_dictation.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/keyboard_test.json">
+    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_test.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
@@ -591,7 +606,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/keyboard_type_dictation.json">
+    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_type_dictation.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
@@ -617,7 +632,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/backend.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
+        <state relative-caret-position="1403">
           <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="72" selection-end-column="38" />
           <folding>
             <element signature="e#25#38#0" expanded="true" />
@@ -627,8 +642,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="121" column="17" selection-start-line="121" selection-start-column="17" selection-end-line="121" selection-end-column="17" />
+        <state relative-caret-position="319">
+          <caret line="112" column="64" lean-forward="true" selection-start-line="112" selection-start-column="64" selection-end-line="112" selection-end-column="64" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

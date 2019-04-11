@@ -22,7 +22,7 @@ class Server:
                 'type_dictation': 'Какой диктант предпочтёте писать?',
                 'mode_dictation': 'Потренируемся или напишем контрольную?'
                 }
-    users = defaultdict(0)
+    users = defaultdict(int)
 
     def __init__(self, token, group_id, server_name: str = "Empty"):
         self.username = ''
