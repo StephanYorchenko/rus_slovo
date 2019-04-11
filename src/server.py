@@ -22,7 +22,7 @@ class Server:
                 'type_dictation': 'Какой диктант предпочтёте писать?',
                 'mode_dictation': 'Потренируемся или напишем контрольную?'
                 }
-    users = {}
+    users = defaultdict(0)
 
     def __init__(self, token, group_id, server_name: str = "Empty"):
         self.username = ''
@@ -45,9 +45,8 @@ class Server:
 
     def start(self):
         k = 0
-        for event in self.long_poll.listen():  # Слушаем сервер
+        for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
-                self.get_user_name(event.object.from_id)
                 self.send_msg(event.object.peer_id, self.messages[self.cur_mes], 2)
                 self.cur_mes = 'home'
                 k = event.object.peer_id
@@ -56,29 +55,29 @@ class Server:
 
     def home(self, peer_id):
         print('@home')
-        self.send_msg(peer_id, self.messages[self.cur_mes], self.cur_keyboard)
+        self.send_msg(peer_id, self.messages[self.cur_mes], self.users[peer_id])
         for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
                 self.get_user_name(event.object.peer_id)
-                if event.object.text == 'Диктант':
-                    self.cur_keyboard = 1
+                user_stat = self.users[event.object.peer_id]
+                if event.object.text == 'Диктант' and not user_stat:
                     self.cur_mes = 'type_dictation'
-                elif event.object.text == 'О боте':
+                    self.users[event.objecs.peer_id] = 1
+                elif event.object.text == 'О боте' and not user_stat:
                     self.send_msg(event.object.peer_id, self.messages['about'], 2)
-                elif event.object.text == 'Орфоэпический':
-                    self.cur_keyboard = 3
+                elif event.object.text == 'Орфоэпический' and user_stat == 1:
                     self.cur_mes = 'mode_dictation'
+                    self.users[event.objecs.peer_id] = 2
                 elif event.object.text == 'Контрольная':
                     self.start_contest(event.object.peer_id)
                 elif event.object.text == 'Назад':
-                    if self.cur_keyboard == 1:
-                        self.cur_keyboard = 0
+                    if self.users[event.object.peer_id] == 1:
+                        self.users[event.object.peer_id] = 0
                         self.cur_mes = 'home'
-                    elif self.cur_keyboard == 3:
-                        self.cur_keyboard = 1
+                    elif self.users[event.object.peer_id] == 3:
+                        self.users[event.object.peer_id] = 1
                         self.cur_mes = 'type_dictation'
-                self.send_msg(event.object.peer_id, self.messages[self.cur_mes], self.cur_keyboard)
-
+                self.send_msg(event.object.peer_id, self.messages[self.cur_mes], self.users[event.object.peer_id])
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
@@ -108,7 +107,7 @@ class Server:
                         break
                     else:
                         self.send_msg(event.object.peer_id,
-                                      f'{self.vk_api.users.get(user_id=event.object.peer_id)[0]["first_name"]},приносим '
+                                      f'{self.vk_api.users.get(user_id=event.object.peer_id)[0]["first_name"]}, приносим'
                                       f'извинения, но сервер занят(',
                                       2)
                         self.queque.append(event.object.peer_id)
