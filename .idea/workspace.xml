@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99dcdc44-14c5-4fa8-8815-ed20bb3af454" name="Default Changelist" comment="">
+    <list default="true" id="99dcdc44-14c5-4fa8-8815-ed20bb3af454" name="Default Changelist" comment="All not">
+      <change afterPath="$PROJECT_DIR$/keyboards/keyboard_task.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/valery.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/valery.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server_manager.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/backend.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1403">
-              <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="72" selection-end-column="38" />
+            <state relative-caret-position="506">
+              <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
               <folding>
                 <element signature="e#25#38#0" expanded="true" />
               </folding>
@@ -45,11 +51,33 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+            <state relative-caret-position="388">
+              <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
+                <element signature="e#2215#4260#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#42#71#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/keyboards/keyboard_task.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="1" selection-start-column="1" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -60,8 +88,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jupyter Notebook" />
-        <option value="package.json" />
         <option value="Python Script" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -79,11 +107,14 @@
         <option value="$PROJECT_DIR$/src/config.py" />
         <option value="$PROJECT_DIR$/src/keyboard_type_dictation.json" />
         <option value="$PROJECT_DIR$/src/server_manager.py" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/runtime.txt" />
         <option value="$PROJECT_DIR$/Procfile.txt" />
         <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/aa816849-e278-45fa-8a15-0f827530bf9d/console.sql" />
+        <option value="$PROJECT_DIR$/keyboards/package.json" />
+        <option value="$PROJECT_DIR$/keyboards/keyboard_task.json" />
+        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/src/backend.py" />
         <option value="$PROJECT_DIR$/src/server.py" />
       </list>
@@ -112,6 +143,11 @@
             <path>
               <item name="test_bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="test_bot" type="462c0819:PsiDirectoryNode" />
+              <item name="keyboards" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="test_bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="test_bot" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -124,6 +160,7 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -170,7 +207,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python">
       <module name="test_bot" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -267,7 +304,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.app" />
         <item itemvalue="Python.server_manager" />
         <item itemvalue="Python.backend" />
         <item itemvalue="Python.bot" />
@@ -294,6 +330,8 @@
       <workItem from="1554807397066" duration="2436000" />
       <workItem from="1554915926008" duration="3699000" />
       <workItem from="1555003419826" duration="3120000" />
+      <workItem from="1555083389581" duration="4184000" />
+      <workItem from="1555087719744" duration="1809000" />
     </task>
     <task id="LOCAL-00001" summary="Some little fixes">
       <created>1554621648055</created>
@@ -474,7 +512,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52654000" />
+    <option name="totallyTimeSpent" value="58647000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -487,8 +525,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="27" width="1307" height="741" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497006" visible="true" weight="0.23552737" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497006" visible="true" weight="0.24345757" />
       <window_info id="Structure" order="1" sideWeight="0.502994" side_tool="true" weight="0.26169705" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -499,16 +538,17 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3288364" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32994923" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003965" side_tool="true" weight="0.4856176" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49960348" weight="0.9492386" />
-      <window_info anchor="bottom" id="Python Console" order="11" weight="0.53807104" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49960348" weight="0.53130287" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.53637904" />
+      <window_info anchor="bottom" id="Database Console" order="12" weight="0.32994923" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" weight="0.3298969" />
-      <window_info anchor="right" id="Version Control" order="5" weight="0.3298969" />
+      <window_info anchor="right" id="Version Control" order="5" weight="0.6193497" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -587,13 +627,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test.ipynb" />
-    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_home.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/keyboards/keyboard_none.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -614,9 +647,6 @@
           <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server_manager.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/runtime.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -660,9 +690,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/aa816849-e278-45fa-8a15-0f827530bf9d/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="49" selection-start-column="49" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server_manager.py" />
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
+        <state relative-caret-position="161">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="e#42#71#0" expanded="true" />
@@ -670,10 +708,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_home.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_task.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/backend.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1403">
-          <caret line="63" column="4" selection-start-line="63" selection-start-column="4" selection-end-line="72" selection-end-column="38" />
+        <state relative-caret-position="506">
+          <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
           <folding>
             <element signature="e#25#38#0" expanded="true" />
           </folding>
@@ -682,10 +734,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+        <state relative-caret-position="388">
+          <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#2215#4260#0" />
           </folding>
         </state>
       </provider>
