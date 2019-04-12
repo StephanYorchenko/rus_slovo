@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99dcdc44-14c5-4fa8-8815-ed20bb3af454" name="Default Changelist" comment="All not">
-      <change afterPath="$PROJECT_DIR$/keyboards/keyboard_task.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/valery.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/valery.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="99dcdc44-14c5-4fa8-8815-ed20bb3af454" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server_manager.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,11 +45,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
+            <state relative-caret-position="705">
+              <caret line="71" column="47" lean-forward="true" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
-                <element signature="e#2215#4260#0" />
               </folding>
             </state>
           </provider>
@@ -297,10 +290,10 @@
     </configuration>
     <list>
       <item itemvalue="Python.Unnamed" />
+      <item itemvalue="Python.app" />
       <item itemvalue="Python.backend" />
       <item itemvalue="Python.bot" />
       <item itemvalue="Python.server_manager" />
-      <item itemvalue="Python.app" />
     </list>
     <recent_temporary>
       <list>
@@ -331,7 +324,7 @@
       <workItem from="1554915926008" duration="3699000" />
       <workItem from="1555003419826" duration="3120000" />
       <workItem from="1555083389581" duration="4184000" />
-      <workItem from="1555087719744" duration="1809000" />
+      <workItem from="1555087719744" duration="3076000" />
     </task>
     <task id="LOCAL-00001" summary="Some little fixes">
       <created>1554621648055</created>
@@ -508,11 +501,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555005840920</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="VERY BIG CHANGES in working with messages">
+      <created>1555089567988</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1555089567988</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58647000" />
+    <option name="totallyTimeSpent" value="59914000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -525,9 +525,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="27" width="1307" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497006" visible="true" weight="0.24345757" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497006" visible="true" weight="0.24345757" />
       <window_info id="Structure" order="1" sideWeight="0.502994" side_tool="true" weight="0.26169705" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -540,7 +539,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32994923" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003965" side_tool="true" weight="0.4856176" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49960348" weight="0.53130287" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49960348" visible="true" weight="0.8392555" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.53637904" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.32994923" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -616,13 +615,14 @@
     <MESSAGE value=" bugfix#2 it was wrong spelling..." />
     <MESSAGE value=" bugfix#3 one another 'objecs'..." />
     <MESSAGE value=" bugfix#4 i forget about difference between keyboards and stats" />
-    <option name="LAST_COMMIT_MESSAGE" value=" bugfix#4 i forget about difference between keyboards and stats" />
+    <MESSAGE value="VERY BIG CHANGES in working with messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="VERY BIG CHANGES in working with messages" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test_bot$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1554398960743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/test_bot$bot.coverage" NAME="bot Coverage Results" MODIFIED="1554555789733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/test_bot$server_manager.coverage" NAME="server_manager Coverage Results" MODIFIED="1554662006423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/test_bot$app.coverage" NAME="app Coverage Results" MODIFIED="1555005719218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test_bot$app.coverage" NAME="app Coverage Results" MODIFIED="1555090060560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test_bot$backend.coverage" NAME="backend Coverage Results" MODIFIED="1554630996518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="editorHistoryManager">
@@ -734,11 +734,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
+        <state relative-caret-position="705">
+          <caret line="71" column="47" lean-forward="true" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#2215#4260#0" />
           </folding>
         </state>
       </provider>

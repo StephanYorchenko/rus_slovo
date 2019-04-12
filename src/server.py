@@ -22,7 +22,7 @@ class Server:
                 'type_dictation': 'Какой диктант предпочтёте писать?',
                 'mode_dictation': 'Потренируемся или напишем контрольную?'
                 }
-    users = defaultdict(lambda: [-1, backend.Task()])
+    users = defaultdict(lambda: [-1, 0])
 
     def __init__(self, token, group_id):
         self.username = ''
@@ -66,10 +66,10 @@ class Server:
                         self.send_msg(peer, self.messages['about'], 2)
                     elif event.object.text == 'Орфоэпический' and self.users[peer][0] == 1:
                         self.cur_mes = 'mode_dictation'
-                        self.users[peer] = 3
+                        self.users[peer][0] = 3
                     elif event.object.text == 'Контрольная':
                         self.cur_mes = 'choose_task'
-                        self.users[peer] = 4
+                        self.users[peer][0] = 4
                     elif event.object.text == 'Назад':
                         if self.users[peer][0] == 1:
                             self.users[peer][0] = 0
@@ -124,5 +124,5 @@ class Server:
 
     def start_cont(self, index, peer):
         assert isinstance(index, int)
-        self.users[peer][1] = backend.Task(peer, index)
+        self.users[peer][1] = backend.Task(index, peer)
 
