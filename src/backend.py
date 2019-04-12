@@ -58,7 +58,7 @@ class Question:
                     }
                     ]
             result_dict['buttons'].append(exit)
-        with open('src/keyboard_test.json', 'w', encoding='UTF-8') as f:
+        with open('keyboards/keyboard_test.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
     @staticmethod
