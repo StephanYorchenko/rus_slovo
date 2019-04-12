@@ -45,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="69" column="43" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
+            <state relative-caret-position="207">
+              <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -293,7 +293,7 @@
       <workItem from="1554736720669" duration="3553000" />
       <workItem from="1554807397066" duration="2436000" />
       <workItem from="1554915926008" duration="3699000" />
-      <workItem from="1555003419826" duration="2029000" />
+      <workItem from="1555003419826" duration="3120000" />
     </task>
     <task id="LOCAL-00001" summary="Some little fixes">
       <created>1554621648055</created>
@@ -456,11 +456,25 @@
       <option name="project" value="LOCAL" />
       <updated>1555005281324</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary=" bugfix#3 one another 'objecs'...">
+      <created>1555005490168</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1555005490168</updated>
+    </task>
+    <task id="LOCAL-00025" summary=" bugfix#4 i forget about difference between keyboards and stats">
+      <created>1555005840920</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1555005840920</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51563000" />
+    <option name="totallyTimeSpent" value="52654000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -473,7 +487,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="27" width="1307" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497006" visible="true" weight="0.23552737" />
       <window_info id="Structure" order="1" sideWeight="0.502994" side_tool="true" weight="0.26169705" />
@@ -561,13 +574,15 @@
     <MESSAGE value="replace self.cur_keyboard to users[peer_id]" />
     <MESSAGE value="bugfix" />
     <MESSAGE value=" bugfix#2 it was wrong spelling..." />
-    <option name="LAST_COMMIT_MESSAGE" value=" bugfix#2 it was wrong spelling..." />
+    <MESSAGE value=" bugfix#3 one another 'objecs'..." />
+    <MESSAGE value=" bugfix#4 i forget about difference between keyboards and stats" />
+    <option name="LAST_COMMIT_MESSAGE" value=" bugfix#4 i forget about difference between keyboards and stats" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test_bot$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1554398960743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/test_bot$bot.coverage" NAME="bot Coverage Results" MODIFIED="1554555789733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/test_bot$server_manager.coverage" NAME="server_manager Coverage Results" MODIFIED="1554662006423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/test_bot$app.coverage" NAME="app Coverage Results" MODIFIED="1554662388395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/test_bot$app.coverage" NAME="app Coverage Results" MODIFIED="1555005719218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/test_bot$backend.coverage" NAME="backend Coverage Results" MODIFIED="1554630996518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
   <component name="editorHistoryManager">
@@ -667,8 +682,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="69" column="43" selection-start-line="69" selection-start-column="43" selection-end-line="69" selection-end-column="43" />
+        <state relative-caret-position="207">
+          <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

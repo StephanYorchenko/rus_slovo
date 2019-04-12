@@ -58,7 +58,6 @@ class Server:
         self.send_msg(peer_id, self.messages[self.cur_mes], self.users[peer_id])
         for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
-                self.get_user_name(event.object.peer_id)
                 user_stat = self.users[event.object.peer_id]
                 if event.object.text == 'Диктант' and not user_stat:
                     self.cur_mes = 'type_dictation'
@@ -82,8 +81,8 @@ class Server:
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
         info = self.vk_api.users.get(user_id=user_id)[0]
-        if info['id'] not in self.users.keys():
-            self.users[info['id']] = User(info['id'],
+        if info['id'] not in self.users__.keys():
+            self.users__[info['id']] = User(info['id'],
                                           info['first_name'],
                                           info['last_name'])
 
