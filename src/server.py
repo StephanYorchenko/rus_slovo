@@ -36,12 +36,18 @@ class Server:
         self.random_id = 0
 
     def send_msg(self, send_id, message, keyboard_index=0):
-        if self.users[send_id][0] == 5:
-            self.vk_api.messages.send(peer_id = send_id,
-                                      message=message,
-                                      random_id=self.random_id,
-                                      keyboard=open(f'keyboards/{send_id}.json', 'r',
-                                                    encoding='UTF-8').read())
+        if self.users[send_id][0] in {5, 6}:
+            try:
+                self.vk_api.messages.send(peer_id=send_id,
+                                          message=message,
+                                          random_id=self.random_id,
+                                          keyboard=open(f'keyboards/{send_id}.json', 'r',
+                                                        encoding='UTF-8').read())
+            except FileNotFoundError:
+                self.vk_api.messages.send(peer_id=send_id,
+                                          message=message,
+                                          random_id=self.random_id,
+                                          keyboard=open(self.keyboards[2], "r", encoding="UTF-8").read())
         else:
             self.vk_api.messages.send(peer_id=send_id,
                                       message=message,
