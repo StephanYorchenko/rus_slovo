@@ -129,5 +129,5 @@ class Server:
 
     def start_cont(self, index, peer):
         assert isinstance(index, int)
-        self.users[peer][1] = backend.Task(index, peer)
+        self.users[peer][1] = backend.Task(peer, index)
         print(self.users[peer][1].task[31])
