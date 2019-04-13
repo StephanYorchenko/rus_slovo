@@ -3,8 +3,6 @@ import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll
 from vk_api.bot_longpoll import VkBotEventType
 
-import sqlite3
-
 from src import backend
 
 from collections import defaultdict
