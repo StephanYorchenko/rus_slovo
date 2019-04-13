@@ -18,7 +18,7 @@
     [{
       "action": {
         "type": "text",
-        "label": "\uD83D\uDD19Назад"
+        "label": "Назад"
       },
       "color": "negative"
     }]
