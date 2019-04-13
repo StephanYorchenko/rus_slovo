@@ -66,7 +66,7 @@ class Task:
         con = sqlite3.connect(r'src/rus_slovo.db')
         sql = "SELECT word, answer FROM orfo_dictation"
         if index:
-            sql += f'WHERE index_task = {index}'
+            sql += f' WHERE index_task = {index}'
         cur = con.cursor()
         c = random.shuffle(list(cur.execute(sql)))
         cur.fetchall()

@@ -14,6 +14,13 @@
         "label": "Заняла ... нарвала"
       },
       "color": "positive"
+    }],
+    [{
+      "action": {
+        "type": "text",
+        "label": "Назад"
+      },
+      "color": "negative"
     }]
   ]
 }
