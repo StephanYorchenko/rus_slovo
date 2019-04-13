@@ -30,8 +30,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/backend.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="552">
               <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+=======
+            <state relative-caret-position="506">
+              <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
+>>>>>>> dev
               <folding>
                 <element signature="e#25#38#0" expanded="true" />
               </folding>
@@ -42,8 +47,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="56">
               <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+=======
+            <state relative-caret-position="705">
+              <caret line="71" column="47" lean-forward="true" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
+>>>>>>> dev
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -63,14 +73,26 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/keyboards/keyboard_task.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="1" selection-start-column="1" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> dev
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jupyter Notebook" />
-        <option value="package.json" />
         <option value="Python Script" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -89,11 +111,14 @@
         <option value="$PROJECT_DIR$/src/config.py" />
         <option value="$PROJECT_DIR$/src/keyboard_type_dictation.json" />
         <option value="$PROJECT_DIR$/src/server_manager.py" />
-        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/runtime.txt" />
         <option value="$PROJECT_DIR$/Procfile.txt" />
         <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/aa816849-e278-45fa-8a15-0f827530bf9d/console.sql" />
+        <option value="$PROJECT_DIR$/keyboards/package.json" />
+        <option value="$PROJECT_DIR$/keyboards/keyboard_task.json" />
+        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/src/backend.py" />
         <option value="$PROJECT_DIR$/src/server.py" />
       </list>
@@ -139,6 +164,7 @@
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -185,7 +211,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python">
       <module name="test_bot" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -282,7 +308,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.app" />
         <item itemvalue="Python.server_manager" />
         <item itemvalue="Python.backend" />
         <item itemvalue="Python.bot" />
@@ -308,7 +333,9 @@
       <workItem from="1554736720669" duration="3553000" />
       <workItem from="1554807397066" duration="2436000" />
       <workItem from="1554915926008" duration="3699000" />
-      <workItem from="1555003419826" duration="2029000" />
+      <workItem from="1555003419826" duration="3120000" />
+      <workItem from="1555083389581" duration="4184000" />
+      <workItem from="1555087719744" duration="3076000" />
     </task>
     <task id="LOCAL-00001" summary="Some little fixes">
       <created>1554621648055</created>
@@ -471,11 +498,36 @@
       <option name="project" value="LOCAL" />
       <updated>1555005281324</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary=" bugfix#3 one another 'objecs'...">
+      <created>1555005490168</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1555005490168</updated>
+    </task>
+    <task id="LOCAL-00025" summary=" bugfix#4 i forget about difference between keyboards and stats">
+      <created>1555005840920</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1555005840920</updated>
+    </task>
+    <task id="LOCAL-00026" summary="VERY BIG CHANGES in working with messages">
+      <created>1555089567988</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1555089567988</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="51573000" />
+=======
+    <option name="totallyTimeSpent" value="59914000" />
+>>>>>>> dev
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -488,7 +540,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="59" y="27" width="1307" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497006" visible="true" weight="0.24345757" />
       <window_info id="Structure" order="1" sideWeight="0.502994" side_tool="true" weight="0.26169705" />
@@ -501,16 +552,21 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3288364" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+=======
+      <window_info anchor="bottom" id="Database Changes" order="8" weight="0.32994923" />
+>>>>>>> dev
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003965" side_tool="true" weight="0.4856176" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49960348" weight="0.9492386" />
-      <window_info anchor="bottom" id="Python Console" order="11" weight="0.53807104" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49960348" visible="true" weight="0.8392555" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.53637904" />
+      <window_info anchor="bottom" id="Database Console" order="12" weight="0.32994923" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" weight="0.3298969" />
-      <window_info anchor="right" id="Version Control" order="5" weight="0.3298969" />
+      <window_info anchor="right" id="Version Control" order="5" weight="0.6193497" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,7 +632,10 @@
     <MESSAGE value="replace self.cur_keyboard to users[peer_id]" />
     <MESSAGE value="bugfix" />
     <MESSAGE value=" bugfix#2 it was wrong spelling..." />
-    <option name="LAST_COMMIT_MESSAGE" value=" bugfix#2 it was wrong spelling..." />
+    <MESSAGE value=" bugfix#3 one another 'objecs'..." />
+    <MESSAGE value=" bugfix#4 i forget about difference between keyboards and stats" />
+    <MESSAGE value="VERY BIG CHANGES in working with messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="VERY BIG CHANGES in working with messages" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test_bot$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1554398960743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -587,13 +646,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test.ipynb" />
-    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_home.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/keyboards/keyboard_none.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -614,9 +666,6 @@
           <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server_manager.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/runtime.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -660,6 +709,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/aa816849-e278-45fa-8a15-0f827530bf9d/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="49" selection-start-column="49" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server_manager.py" />
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -670,10 +727,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_home.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/keyboards/keyboard_task.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/backend.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="552">
           <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
+=======
+        <state relative-caret-position="506">
+          <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
+>>>>>>> dev
           <folding>
             <element signature="e#25#38#0" expanded="true" />
           </folding>
@@ -682,8 +758,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="56">
           <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+=======
+        <state relative-caret-position="705">
+          <caret line="71" column="47" lean-forward="true" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
+>>>>>>> dev
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

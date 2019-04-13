@@ -5,36 +5,26 @@ import json
 import sqlite3
 
 
-
 class Question:
 
-    def __init__(self):
-        self.dict_words = self.selector('orfo_dictation')
-        self.quest = random.choice(list(self.dict_words.keys()))
-        self.answer = self.dict_words[self.quest]
-        self.ask = self.reformat_word(self.quest)
-        self.get_json_keyboard(self.get_list_answers(), True)
+    def __init__(self, word, answer, peer):
+        self.word = word
+        self.answer = answer
+        self.peer = peer
 
     @staticmethod
     def reformat_word(word, k=None):
-        if k is None:
-            k = random.choice([i for i in range(len(word)) if word[i] in list('ёуеыаоэяию')])
         word = list(word)
         word[k] = word[k].upper()
         return ''.join(word)
 
-    def task(self, answer):
-        print(self.answer == answer)
-        return answer == self.answer
-
     def get_list_answers(self):
-        keys = [i for i in range(len(self.quest)) if self.quest[i] in list('ёуеыаоэяию')]
-        res_list = [self.reformat_word(self.quest, x) for x in keys]
+        keys = [i for i in range(len(self.word)) if self.word[i] in list('ёуеыаоэяию')]
+        res_list = [self.reformat_word(self.word, x) for x in keys]
         random.shuffle(res_list)
         return res_list
 
-    @staticmethod
-    def get_json_keyboard(list_answers, exit_but=False):
+    def get_json_keyboard(self, list_answers, exit_but=False):
         result_dict = {'one_time': False,
                        'buttons': []}
         for i in list_answers:
@@ -49,26 +39,41 @@ class Question:
             result_dict['buttons'].append(k)
         if exit_but:
             exit = [
-                    {
-                    'action':{
+                {
+                    'action': {
                         'type': 'text',
                         'label': 'Стоп'
-                        },
-                    'color':'negative'
-                    }
-                    ]
+                    },
+                    'color': 'negative'
+                }
+            ]
             result_dict['buttons'].append(exit)
-        with open('keyboards/keyboard_test.json', 'w', encoding='UTF-8') as f:
+        with open(f'keyboards/{self.peer}.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
+    def check(self, answer):
+        return answer == self.answer
+
+
+class Task:
+    def __init__(self, peer, task=0):
+        self.task = self.question_creator(self.selector(task), peer) if task else 0
+        self.current_task = 0
+        self.right = 0
+
     @staticmethod
-    def selector(table_name):
+    def selector(index):
         con = sqlite3.connect(r'src/rus_slovo.db')
-        sql = f'SELECT * FROM {table_name}'
+        sql = "SELECT word, answer FROM orfo_dictation"
+        if index:
+            sql += f'WHERE index_task = {index}'
         cur = con.cursor()
-        c = list(cur.execute(sql))
+        c = random.shuffle(list(cur.execute(sql)))
         cur.fetchall()
         cur.close()
         con.close()
-        return {x[1]: x[2] for x in c}
+        return c[:32]
 
+    @staticmethod
+    def question_creator(array, peer):
+        return [Question(i[0], i[1], peer) for i in array]
