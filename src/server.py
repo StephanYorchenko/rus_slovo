@@ -91,7 +91,7 @@ class Server:
                         a = ["Августовский ... занял",
                              "Заняла ... нарвала"]
                         res = a.index(event.object.text)
-                        self.start_cont(res, peer)
+                        self.start_cont(res + 1, peer)
                         self.users[peer][0] = 5
                         self.send_msg(peer,
                                       'Отправьте любой символ чтобы начать',
@@ -105,7 +105,7 @@ class Server:
                 else:
                     if event.object.text != 'Стоп':
                         kk = self.users[peer][1].current_task
-                        if self.users[peer][1].task(kk).check(event.object.text):
+                        if self.users[peer][1].task[kk].check(event.object.text):
                             self.send_msg(peer, 'Молодец', 2)
                             self.users[peer][1].right += 1
                         else:
