@@ -20,7 +20,8 @@ class Server:
                 'home': 'Вы находитесь в главном меню',
                 'about': 'Разработано Drackeland Technology',
                 'type_dictation': 'Какой диктант предпочтёте писать?',
-                'mode_dictation': 'Потренируемся или напишем контрольную?'
+                'mode_dictation': 'Потренируемся или напишем контрольную?',
+                'choose_task': 'Выберите задание из предложенного списка:'
                 }
     users = defaultdict(lambda: [-1, 0])
 

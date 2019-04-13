@@ -77,3 +77,4 @@ class Task:
     @staticmethod
     def question_creator(array, peer):
         return [Question(i[0], i[1], peer) for i in array]
+
