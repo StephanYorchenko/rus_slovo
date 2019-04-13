@@ -66,6 +66,7 @@ class Server:
                                       self.messages['start'],
                                       2)
                         self.users[peer][0] = 0
+                        self.cur_mes = 'home'
                     if event.object.text == 'Диктант' and not self.users[peer][0]:
                         self.cur_mes = 'type_dictation'
                         self.users[peer][0] = 1
@@ -99,9 +100,9 @@ class Server:
                         continue
                     self.send_msg(peer, self.messages[self.cur_mes], self.users[peer][0])
                 elif self.users[peer] == 5:
-                    kk = self.users[peer][1].current_task
-                    self.users[peer][1].task[kk].get_json_keyboard(exit_but=True)
-                    self.send_msg(peer, self.users[peer][1].task[kk].word)
+                    self.users[peer][1].task[0].get_json_keyboard(exit_but=True)
+                    self.send_msg(peer, self.users[peer][1].task[0].word)
+                    print('----')
                     self.users[peer][0] = 6
                 else:
                     if event.object.text != 'Стоп':
