@@ -54,6 +54,9 @@ class Question:
     def check(self, answer):
         return answer == self.answer
 
+    def __str__(self):
+        return f'<{self.word}----{self.answer}>'
+
 
 class Task:
     def __init__(self, peer=0, task=0):

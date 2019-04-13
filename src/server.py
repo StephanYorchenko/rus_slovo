@@ -118,12 +118,10 @@ class Server:
                             self.send_msg(peer, self.users[peer][1].task[kk].word)
                         else:
                             self.send_msg(peer, f'Ваш результат {self.users[peer][1].right}/32', 0)
-                            self.users[peer][0]=0
+                            self.users[peer][0] = 0
                     else:
                         self.send_msg(peer, f'Ваш результат {self.users[peer][1].right}/32', 0)
                         self.users[peer][0] = 0
-
-
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
@@ -132,4 +130,4 @@ class Server:
     def start_cont(self, index, peer):
         assert isinstance(index, int)
         self.users[peer][1] = backend.Task(index, peer)
-
+        print(self.users[peer][1].task[31])
