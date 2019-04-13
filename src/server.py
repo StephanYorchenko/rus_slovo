@@ -117,11 +117,11 @@ class Server:
                             self.users[peer][1].task[kk].get_json_keyboard(exit_but=True)
                             self.send_msg(peer, self.users[peer][1].task[kk].word)
                         else:
-                            self.send_msg(peer, f'Ваш результат {self.users[peer][1].right}/32', 0)
                             self.users[peer][0] = 0
+                            self.send_msg(peer, f'Ваш результат {self.users[peer][1].right}/32', 0)
                     else:
-                        self.send_msg(peer, f'Ваш результат {self.users[peer][1].right}/32', 0)
                         self.users[peer][0] = 0
+                        self.send_msg(peer, f'Ваш результат {self.users[peer][1].right}/32', 0)
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
