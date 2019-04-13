@@ -99,7 +99,7 @@ class Server:
                     self.send_msg(peer, self.messages[self.cur_mes], self.users[peer][0])
                 elif self.users[peer] == 5:
                     kk = self.users[peer][1].current_task
-                    self.users[peer][1].task[kk].get_json_keyboard()
+                    self.users[peer][1].task[kk].get_json_keyboard(exit_but=True)
                     self.send_msg(peer, self.users[peer][1].task[kk].word)
                     self.users[peer][0] = 6
                 else:
@@ -114,7 +114,7 @@ class Server:
                         self.users[peer][1].current_task += 1
                         if self.users[peer][1].current_task < 32:
                             kk = self.users[peer][1].current_task
-                            self.users[peer][1].task[kk].get_json_keyboard()
+                            self.users[peer][1].task[kk].get_json_keyboard(exit_but=True)
                             self.send_msg(peer, self.users[peer][1].task[kk].word)
                         else:
                             self.send_msg(peer, f'Ваш результат {self.users[peer][1].right}/32', 0)

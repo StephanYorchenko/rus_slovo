@@ -11,6 +11,7 @@ class Question:
         self.word = word
         self.answer = answer
         self.peer = peer
+        self.list_answers = self.get_list_answers()
 
     @staticmethod
     def reformat_word(word, k=None):
@@ -24,10 +25,10 @@ class Question:
         random.shuffle(res_list)
         return res_list
 
-    def get_json_keyboard(self, list_answers, exit_but=False):
+    def get_json_keyboard(self, exit_but=False):
         result_dict = {'one_time': False,
                        'buttons': []}
-        for i in list_answers:
+        for i in self.list_answers:
             print(i)
             k = [{
                 "action": {
