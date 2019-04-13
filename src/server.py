@@ -96,6 +96,7 @@ class Server:
                         self.send_msg(peer,
                                       'Отправьте любой символ чтобы начать',
                                       self.users[peer][0])
+                        continue
                     self.send_msg(peer, self.messages[self.cur_mes], self.users[peer][0])
                 elif self.users[peer] == 5:
                     kk = self.users[peer][1].current_task
