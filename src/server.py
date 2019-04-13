@@ -60,7 +60,7 @@ class Server:
         for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
                 peer = event.object.peer_id
-                if self.users[peer][0] != 5 or self.users[peer][0] != 6:
+                if self.users[peer][0] not in {5, 6}:
                     if self.users[peer][0] == -1:
                         self.send_msg(peer,
                                       self.messages['start'],
