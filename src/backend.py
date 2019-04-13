@@ -56,7 +56,7 @@ class Question:
 
 
 class Task:
-    def __init__(self, peer, task=0):
+    def __init__(self, peer=0, task=0):
         self.task = self.question_creator(self.selector(task), peer) if task else 0
         self.current_task = 0
         self.right = 0

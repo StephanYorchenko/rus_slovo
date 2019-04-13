@@ -23,7 +23,7 @@ class Server:
                 'mode_dictation': 'Потренируемся или напишем контрольную?',
                 'choose_task': 'Выберите задание из предложенного списка:'
                 }
-    users = defaultdict(lambda: [-1, 0])
+    users = defaultdict(lambda: [-1, backend.Task()])
 
     def __init__(self, token, group_id):
         self.username = ''
