@@ -68,7 +68,8 @@ class Task:
         if index:
             sql += f' WHERE index_task = {index}'
         cur = con.cursor()
-        c = random.shuffle(list(cur.execute(sql)))
+        c = list(cur.execute(sql))
+        random.shuffle(c)
         cur.fetchall()
         cur.close()
         con.close()
