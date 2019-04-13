@@ -97,7 +97,7 @@ class Server:
                                       self.users[peer][0])
                         continue
                     self.send_msg(peer, self.messages[self.cur_mes], self.users[peer][0])
-                elif self.users[peer] == 5:
+                elif self.users[peer][0] == 5:
                     self.users[peer][1].task[0].get_json_keyboard(exit_but=True)
                     self.send_msg(peer, self.users[peer][1].task[0].word)
                     print('----')
