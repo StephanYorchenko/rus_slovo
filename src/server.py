@@ -40,7 +40,7 @@ class Server:
             self.vk_api.messages.send(peer_id = send_id,
                                       message=message,
                                       random_id=self.random_id,
-                                      keyboard=open(f'keyboards/users/{send_id}.json', 'r',
+                                      keyboard=open(f'keyboards/{send_id}.json', 'r',
                                                     encoding='UTF-8').read())
         else:
             self.vk_api.messages.send(peer_id=send_id,
