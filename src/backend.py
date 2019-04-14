@@ -83,3 +83,16 @@ class Task:
     def question_creator(array, peer):
         return [Question(i[0], i[1], peer) for i in array]
 
+
+class UserDict:
+    def __init__(self):
+        self.users = {}
+
+    def __getitem__(self, peer_id):
+        if peer_id not in self.users.keys():
+            return False
+        else:
+            self.update(self.users[peer_id])
+
+    def update(self, peer_id):
+        pass
