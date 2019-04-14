@@ -30,13 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/backend.py">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="552">
-              <caret line="63" column="17" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
-=======
             <state relative-caret-position="506">
               <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
->>>>>>> dev
               <folding>
                 <element signature="e#25#38#0" expanded="true" />
               </folding>
@@ -47,13 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server.py">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="56">
-              <caret line="40" column="48" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
-=======
             <state relative-caret-position="705">
               <caret line="71" column="47" lean-forward="true" selection-start-line="71" selection-start-column="47" selection-end-line="71" selection-end-column="47" />
->>>>>>> dev
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -73,8 +63,6 @@
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-=======
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/keyboards/keyboard_task.json">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,7 +72,6 @@
           </provider>
         </entry>
       </file>
->>>>>>> dev
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
