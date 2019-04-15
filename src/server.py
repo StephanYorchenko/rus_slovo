@@ -21,7 +21,8 @@ class Server:
                 'mode_dictation': 'Потренируемся или напишем контрольную?',
                 'choose_task': 'Выберите задание из предложенного списка:'
                 }
-    users = defaultdict(lambda: [-1, backend.Task()])
+    #users = defaultdict(lambda: [-1, backend.Task()])
+    users = backend.UserDict()
 
     def __init__(self, token, group_id):
         self.username = ''
@@ -57,7 +58,9 @@ class Server:
         print('@home')
         for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
+                print(self.users, event.type, event.object.text,  sep='     ')
                 peer = event.object.peer_id
+                self.users[peer][2] += 1
                 if self.users[peer][0] not in {5, 6}:
                     if self.users[peer][0] == -1:
                         self.send_msg(peer,
@@ -132,5 +135,5 @@ class Server:
 
     def start_cont(self, index, peer):
         assert isinstance(index, int)
-        self.users[peer][1] = backend.Task(peer, index)
+        self.users[peer] = backend.Task(peer, index)
         print(self.users[peer][1].task[31])

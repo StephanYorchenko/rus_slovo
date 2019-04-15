@@ -90,9 +90,47 @@ class UserDict:
 
     def __getitem__(self, peer_id):
         if peer_id not in self.users.keys():
-            return False
-        else:
-            self.update(self.users[peer_id])
+            self.users[peer_id] = [-1, Task(), 0, 0]
+        self.update(peer_id)
+        print(f'[---{self.users[peer_id]}---]')
+        return self.users[peer_id]
+
+    def __setitem__(self, key, value):
+        self.users[key][1] = value
+
+    @staticmethod
+    def get_record(peer_id):
+        con = sqlite3.connect(r'src/rus_slovo.db')
+        sql = f"SELECT action_id, total_rank FROM Users WHERE vk_id = {peer_id}"
+        cur = con.cursor()
+        c = list(cur.execute(sql))
+        cur.fetchall()
+        cur.close()
+        con.close()
+        return c
 
     def update(self, peer_id):
-        pass
+        a = self.get_record(peer_id)
+        if not a:
+            with sqlite3.connect(r'src/rus_slovo.db') as con:
+                cur = con.cursor()
+                sql = f"INSERT INTO Users (vk_id, action_id, total_rank) VALUES ({peer_id}, {self.users[peer_id][2]}, {self.users[peer_id][3]})"
+                cur.execute(sql)
+                cur.fetchall()
+                con.commit()
+                cur.close()
+        else:
+            print(f'#{a}')
+            if a[0][0] > self.users[peer_id][2]:
+                self.users[peer_id][2], self.users[peer_id][3] = a[0]
+            elif a[0][0] < self.users[peer_id][2]:
+                with sqlite3.connect(r'src/rus_slovo.db') as con:
+                    cur = con.cursor()
+                    sql = f"UPDATE Users SET action_id = {self.users[peer_id][2]}, total_rank = {self.users[peer_id][3]} WHERE vk_id = {peer_id};"
+                    cur.execute(sql)
+                    cur.fetchall()
+                    con.commit()
+                    cur.close()
+
+    def __str__(self):
+        return f'<------ {len(self.users.keys())} records---->'
