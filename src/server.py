@@ -79,8 +79,8 @@ class Server:
                              "Заняла ... нарвала"]
                         res = a.index(event.object.text)
                         self.start_cont(res + 1, peer)
-                        self.send_msg(peer, '1')
                         self.users[peer][0] = 5
+                        self.send_msg(peer, '1')
                         continue
                     elif self.users[peer][0] == 7:
                         if event.object.text == "Попробовать заново":
