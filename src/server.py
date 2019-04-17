@@ -27,7 +27,7 @@ class Server:
         self.active = 0
         self.random_id = 0
 
-    def send_msg(self, send_id, message=None, keyboard_index=0):
+    def send_msg(self, send_id, message=False, keyboard_index=0):
         if self.users[send_id][0] in {5, 6}:
             try:
                 self.vk_api.messages.send(peer_id=send_id,
@@ -80,7 +80,7 @@ class Server:
                         res = a.index(event.object.text)
                         self.start_cont(res + 1, peer)
                         self.users[peer][0] = 5
-                        self.send_msg(peer, '1')
+                        self.send_msg(peer)
                         continue
                     elif self.users[peer][0] == 7:
                         if event.object.text == "Попробовать заново":
