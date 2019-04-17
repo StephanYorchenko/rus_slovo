@@ -4,16 +4,9 @@
     [{
       "action": {
         "type": "text",
-        "label": "Попробовать заново"
+        "label": "Начать"
       },
-      "color": "positive"
-    }],
-    [{
-      "action": {
-        "type": "text",
-        "label": "На главную"
-      },
-      "color": "default"
+      "color": "primary"
     }]
   ]
 }
