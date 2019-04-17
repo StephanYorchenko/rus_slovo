@@ -27,7 +27,7 @@ class Server:
         self.active = 0
         self.random_id = 0
 
-    def send_msg(self, send_id, message, keyboard_index=0):
+    def send_msg(self, send_id, message=None, keyboard_index=0):
         if self.users[send_id][0] in {5, 6}:
             try:
                 self.vk_api.messages.send(peer_id=send_id,
