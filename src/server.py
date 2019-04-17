@@ -42,7 +42,7 @@ class Server:
                                           keyboard=open(self.keyboards[5][0], "r", encoding="UTF-8").read())
         else:
             self.vk_api.messages.send(peer_id=send_id,
-                                      message=self.keyboards[keyboard_index][1],
+                                      message=self.keyboards[keyboard_index][1] if not message else message,
                                       random_id=self.random_id,
                                       keyboard=open(self.keyboards[keyboard_index][0], "r", encoding="UTF-8").read())
         self.random_id += 1
@@ -110,11 +110,11 @@ class Server:
                             self.users[peer][0] = 7
                             self.send_msg(peer,
                                           f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
-                                          keyboard_index=6)
+                                          keyboard_index=7)
                     else:
                         self.users[peer][0] = 7
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
-                                      keyboard_index=6)
+                                      keyboard_index=7)
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
