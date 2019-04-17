@@ -111,8 +111,7 @@ class UserDict:
         if not a:
             with sqlite3.connect(r'src/rus_slovo.db') as con:
                 cur = con.cursor()
-                sql = f"INSERT INTO Users (vk_id, action_id, total_rank) VALUES ({peer_id}, {self.users[peer_id][2]}, {
-                self.users[peer_id][3]})"
+                sql = f"INSERT INTO Users (vk_id, action_id, total_rank) VALUES ({peer_id}, {self.users[peer_id][2]}, {self.users[peer_id][3]})"
                 cur.execute(sql)
                 cur.fetchall()
                 con.commit()
@@ -124,8 +123,7 @@ class UserDict:
             elif a[0][0] < self.users[peer_id][2]:
                 with sqlite3.connect(r'src/rus_slovo.db') as con:
                     cur = con.cursor()
-                    sql = f"UPDATE Users SET action_id = {self.users[peer_id][2]}, total_rank = {self.users[peer_id][
-                        3]} WHERE vk_id = {peer_id};"
+                    sql = f"UPDATE Users SET action_id = {self.users[peer_id][2]}, total_rank = {self.users[peer_id][3]} WHERE vk_id = {peer_id};"
                     cur.execute(sql)
                     cur.fetchall()
                     con.commit()
