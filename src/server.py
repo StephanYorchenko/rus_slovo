@@ -83,7 +83,7 @@ class Server:
                             self.users[peer][0] = 5
                             self.send_msg(peer)
                             continue
-                        except IndexError:
+                        except ValueError:
                             self.send_msg(peer, 'А виртуальную клавиатуру для кого придумали?', 2)
                     elif self.users[peer][0] == 7:
                         if event.object.text == "Попробовать заново":
