@@ -3,7 +3,7 @@ import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll
 from vk_api.bot_longpoll import VkBotEventType
 
-from src import backend
+from src.backend import orfoepy_back
 
 
 class Server:
@@ -16,7 +16,7 @@ class Server:
                  ['keyboards/keyboard_next.json', 'Выберите дальнейшее действие']
                  ]
 
-    users = backend.UserDict()
+    users = orfoepy_back.UserDict()
 
     def __init__(self, token, group_id):
         self.username = ''
@@ -125,5 +125,5 @@ class Server:
 
     def start_cont(self, index, peer):
         assert isinstance(index, int)
-        self.users[peer][1] = backend.Task(peer, index)
+        self.users[peer][1] = orfoepy_back.Task(peer, index)
         print(self.users[peer][1].task[31])
