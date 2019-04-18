@@ -77,11 +77,14 @@ class Server:
                     elif self.users[peer][0] == 4:
                         a = ["Августовский ... занял",
                              "Заняла ... нарвала"]
-                        res = a.index(event.object.text)
-                        self.start_cont(res + 1, peer)
-                        self.users[peer][0] = 5
-                        self.send_msg(peer)
-                        continue
+                        try:
+                            res = a.index(event.object.text)
+                            self.start_cont(res + 1, peer)
+                            self.users[peer][0] = 5
+                            self.send_msg(peer)
+                            continue
+                        except IndexError:
+                            self.send_msg(peer, 'А виртуальную клавиатуру для кого придумали?', 2)
                     elif self.users[peer][0] == 7:
                         if event.object.text == "Попробовать заново":
                             self.users[peer][0] = 4

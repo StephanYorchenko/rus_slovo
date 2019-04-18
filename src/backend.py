@@ -92,7 +92,6 @@ class UserDict:
         if peer_id not in self.users.keys():
             self.users[peer_id] = [-1, Task(), 0, 0]
         self.update(peer_id)
-        print(f'[---{self.users[peer_id]}---]')
         return self.users[peer_id]
 
     @staticmethod
@@ -117,7 +116,6 @@ class UserDict:
                 con.commit()
                 cur.close()
         else:
-            print(f'#{a}')
             if a[0][0] > self.users[peer_id][2]:
                 self.users[peer_id][2], self.users[peer_id][3] = a[0]
             elif a[0][0] < self.users[peer_id][2]:
