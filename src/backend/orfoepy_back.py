@@ -7,8 +7,8 @@ import sqlite3
 
 class Question:
 
-    def __init__(self, word, answer, peer):
-        self.word = word
+    def __init__(self, answer, peer):
+        self.word = str(answer).lower()
         self.answer = answer
         self.peer = peer
         self.list_answers = self.get_list_answers()
@@ -68,7 +68,7 @@ class Task:
     @staticmethod
     def selector(index):
         con = sqlite3.connect(r'src/rus_slovo.db')
-        sql = "SELECT word, answer FROM orfo_dictation"
+        sql = "SELECT answer FROM orfo_dictation"
         if index:
             sql += f' WHERE index_task = {index}'
         cur = con.cursor()
@@ -81,7 +81,7 @@ class Task:
 
     @staticmethod
     def question_creator(array, peer):
-        return [Question(i[0], i[1], peer) for i in array]
+        return [Question(i[1], peer) for i in array]
 
 
 class UserDict:
