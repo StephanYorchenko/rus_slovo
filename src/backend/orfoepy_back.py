@@ -91,7 +91,7 @@ class UserDict:
     def __getitem__(self, peer_id):
         if peer_id not in self.users.keys():
             self.users[peer_id] = [-1, Task(), 0, 0]
-        self.update(peer_id)
+        # self.update(peer_id)
         return self.users[peer_id]
 
     @staticmethod
