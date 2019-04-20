@@ -81,7 +81,7 @@ class Task:
 
     @staticmethod
     def question_creator(array, peer):
-        return [Question(i[1], peer) for i in array]
+        return [Question(i[0], peer) for i in array]
 
 
 class UserDict:
