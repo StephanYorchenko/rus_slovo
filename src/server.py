@@ -155,7 +155,7 @@ class Server:
                             self.send_msg(peer, 'Молодец', 2)
                             self.users[peer][1].right += 1
                         else:
-                            answer = self.users[peer][1].task[kk].answer_right
+                            answer = self.users[peer][1].queque[kk].answer_right
                             self.send_msg(peer, f'Увы, но правильно произносить {answer}', 2)
                         self.users[peer][1].current_task += 1
                         if self.users[peer][1].current_task < 16:
