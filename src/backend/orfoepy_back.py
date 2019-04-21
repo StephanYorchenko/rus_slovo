@@ -53,7 +53,10 @@ class Question:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
     def check(self, answer):
-        return answer == self.answer
+        if answer != 'электропрОвод' or answer != 'электропровОд':
+            return [answer == self.answer, 3]
+        else:
+            return [True, int(not ['электропрОвод', 'электропровОд'].index(answer))]
 
     def __str__(self):
         return f'<{self.word}----{self.answer}>'

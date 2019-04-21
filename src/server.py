@@ -98,8 +98,12 @@ class Server:
                 else:
                     if event.object.text != 'Стоп':
                         kk = self.users[peer][1].current_task
-                        if self.users[peer][1].task[kk].check(event.object.text):
-                            self.send_msg(peer, 'Молодец', 2)
+                        check = self.users[peer][1].task[kk].check(event.object.text)[0]
+                        if check[0]:
+                            if not check[1] == 3:
+                                self.send_msg(peer, 'Молодец', 2)
+                            else:
+                                self.send_msg(peer, f'Молодец! Надеюсь, ты занешь что можно говорить и {check[1]}', 2)
                             self.users[peer][1].right += 1
                         else:
                             answer = self.users[peer][1].task[kk].answer
