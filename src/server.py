@@ -24,12 +24,9 @@ class Server:
     users = orfoepy_back.UserDict()
 
     def __init__(self, token, group_id):
-        self.username = ''
-        self.cur_keyboard = 0
         self.vk = vk_api.VkApi(token=token)
         self.long_poll = VkBotLongPoll(self.vk, group_id)
         self.vk_api = self.vk.get_api()
-        self.active = 0
         self.random_id = 0
 
     def send_msg(self, send_id, message=False, keyboard_index=0):
@@ -110,6 +107,11 @@ class Server:
                         self.users[peer][0] = 10
                         self.send_msg(peer)
                         continue
+                    elif self.users[peer][0] == 12:
+                        if event.object.text == "Попробовать заново":
+                            self.users[peer][0] = 8
+                        else:
+                            self.users[peer][0] = 0
 
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
 
@@ -163,12 +165,12 @@ class Server:
                             self.users[peer][1].queque[kk].get_json_keyboard()
                             self.send_msg(peer, self.users[peer][1].queque[kk].word)
                         else:
-                            self.users[peer][0] = 7
+                            self.users[peer][0] = 12
                             self.send_msg(peer,
                                           f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
                                           keyboard_index=6)
                     else:
-                        self.users[peer][0] = 7
+                        self.users[peer][0] = 12
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
                                       keyboard_index=6)
 
