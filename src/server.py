@@ -76,7 +76,9 @@ class Server:
                             self.users[peer][0] = 3
                     elif self.users[peer][0] == 4:
                         a = ["Августовский ... занял",
-                             "Заняла ... нарвала"]
+                             "Заняла ... нарвала",
+                             "Нарост ... предложу",
+                             "Премировать... электропровод"]
                         try:
                             res = a.index(event.object.text)
                             self.start_cont(res + 1, peer)
