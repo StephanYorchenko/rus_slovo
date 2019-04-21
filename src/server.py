@@ -151,7 +151,7 @@ class Server:
                 elif self.users[peer][0] == 11:
                     if event.object.text != 'Стоп':
                         kk = self.users[peer][1].current_task
-                        if self.users[peer][1].queque[kk].check():
+                        if self.users[peer][1].queque[kk].check(event.object.text):
                             self.send_msg(peer, 'Молодец', 2)
                             self.users[peer][1].right += 1
                         else:
@@ -166,11 +166,11 @@ class Server:
                             self.users[peer][0] = 7
                             self.send_msg(peer,
                                           f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
-                                          keyboard_index=9)
+                                          keyboard_index=6)
                     else:
                         self.users[peer][0] = 7
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
-                                      keyboard_index=9)
+                                      keyboard_index=6)
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
