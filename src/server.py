@@ -59,7 +59,7 @@ class Server:
                 print(self.users, event.type, event.object.text, sep='     ')
                 peer = event.object.peer_id
                 self.users[peer][2] += 1
-                if self.users[peer][0] not in {5, 6}:
+                if self.users[peer][0] not in {5, 6, 10, 11}:
                     if self.users[peer][0] == -1:
                         self.send_msg(peer, keyboard_index=2)
                         self.keyboards[2][1] = 'Разрабоотано DvaTopora'
