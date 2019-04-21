@@ -11,79 +11,109 @@
     <collation id="3" parent="1" name="BINARY"/>
     <collation id="4" parent="1" name="NOCASE"/>
     <collation id="5" parent="1" name="RTRIM"/>
-    <table id="6" parent="2" name="Users"/>
-    <table id="7" parent="2" name="orfo_dictation"/>
-    <table id="8" parent="2" name="sqlite_master">
+    <table id="6" parent="2" name="Grammatical_Norms"/>
+    <table id="7" parent="2" name="Users"/>
+    <table id="8" parent="2" name="orfo_dictation"/>
+    <table id="9" parent="2" name="sqlite_master">
       <System>1</System>
     </table>
-    <table id="9" parent="2" name="sqlite_sequence">
+    <table id="10" parent="2" name="sqlite_sequence">
       <System>1</System>
     </table>
-    <column id="10" parent="6" name="vk_id">
+    <column id="11" parent="6" name="id">
+      <Position>1</Position>
+      <DataType>INTEGER|0s</DataType>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="12" parent="6" name="word1">
+      <Position>2</Position>
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="13" parent="6" name="type_word2">
+      <Position>3</Position>
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="14" parent="6" name="answer_right">
+      <Position>4</Position>
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="6" name="answer_wrong">
+      <Position>5</Position>
+      <DataType>TEXT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="16" parent="6">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="17" parent="7" name="vk_id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
     </column>
-    <column id="11" parent="6" name="action_id">
+    <column id="18" parent="7" name="action_id">
       <Position>2</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="12" parent="6" name="total_rank">
+    <column id="19" parent="7" name="total_rank">
       <Position>3</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <key id="13" parent="6">
+    <key id="20" parent="7">
       <ColNames>vk_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="14" parent="7" name="id">
+    <column id="21" parent="8" name="id">
       <Position>1</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="7" name="answer">
+    <column id="22" parent="8" name="answer">
       <Position>2</Position>
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="7" name="index_task">
+    <column id="23" parent="8" name="index_task">
       <Position>3</Position>
       <DataType>INTEGER|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <key id="17" parent="7">
+    <key id="24" parent="8">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="18" parent="8" name="type">
+    <column id="25" parent="9" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="19" parent="8" name="name">
+    <column id="26" parent="9" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="20" parent="8" name="tbl_name">
+    <column id="27" parent="9" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="21" parent="8" name="rootpage">
+    <column id="28" parent="9" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="22" parent="8" name="sql">
+    <column id="29" parent="9" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="23" parent="9" name="name">
+    <column id="30" parent="10" name="name">
       <Position>1</Position>
     </column>
-    <column id="24" parent="9" name="seq">
+    <column id="31" parent="10" name="seq">
       <Position>2</Position>
     </column>
   </database-model>

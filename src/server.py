@@ -4,6 +4,7 @@ from vk_api.bot_longpoll import VkBotLongPoll
 from vk_api.bot_longpoll import VkBotEventType
 
 from src.backend import orfoepy_back
+import src.backend.grammar_norms as gm
 
 
 class Server:
@@ -13,7 +14,11 @@ class Server:
                  ['keyboards/keyboard_mode_dictation.json', 'Потренируемся или напишем контрольную?'],
                  ['keyboards/keyboard_task.json', 'Выберите задание из предложенного списка:'],
                  ['keyboards/keyboard_start.json', 'Нажмите, чтобы начать'],
-                 ['keyboards/keyboard_next.json', 'Выберите дальнейшее действие']
+                 ['keyboards/keyboard_next.json', 'Выберите дальнейшее действие'],
+                 [],
+                 ['keyboards/keyboard_grammar_mode.json', 'Какое задание предпочтёте?'],
+                 ['keyboards/keyboard_mode_dictation.json', 'Потренируемся или напишем контрольную?'],
+                 ['keyboards/keyboard_next.json', 'Выберите дальнейшее действие'],
                  ]
 
     users = orfoepy_back.UserDict()
@@ -28,7 +33,7 @@ class Server:
         self.random_id = 0
 
     def send_msg(self, send_id, message=False, keyboard_index=0):
-        if self.users[send_id][0] in {5, 6}:
+        if self.users[send_id][0] in {5, 6, 10, 11}:
             try:
                 self.vk_api.messages.send(peer_id=send_id,
                                           message=message,
@@ -61,11 +66,13 @@ class Server:
                         self.users[peer][0] = 0
                     if event.object.text == 'Диктант' and not self.users[peer][0]:
                         self.users[peer][0] = 1
+                    elif event.object.text == "Грамматика" and not self.users[peer][0]:
+                        self.users[peer][0] = 8
                     elif event.object.text == 'О боте' and not self.users[peer][0]:
                         self.send_msg(peer, keyboard_index=2)
                     elif event.object.text == 'Орфоэпический' and self.users[peer][0] == 1:
                         self.users[peer][0] = 3
-                    elif event.object.text == 'Контрольная':
+                    elif self.users[peer][0] == 3 and event.object.text == 'Контрольная':
                         self.users[peer][0] = 4
                     elif event.object.text == 'Назад':
                         if self.users[peer][0] == 1:
@@ -81,7 +88,7 @@ class Server:
                              "Премировать... электропровод"]
                         try:
                             res = a.index(event.object.text)
-                            self.start_cont(res + 1, peer)
+                            self.start_orthoepy_cont(res + 1, peer)
                             self.users[peer][0] = 5
                             self.send_msg(peer)
                             continue
@@ -92,12 +99,21 @@ class Server:
                             self.users[peer][0] = 4
                         else:
                             self.users[peer][0] = 0
+                    elif self.users[peer][0] == 8 and event.object.text == "Грамматические нормы":
+                        self.users[peer][0] = 9
+                    elif self.users[peer][0] == 9 and event.object.text == 'Контрольная':
+                        self.start_grammar_task(peer)
+                        self.users[peer][0] = 10
+                        self.send_msg(peer)
+                        continue
+
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
+
                 elif self.users[peer][0] == 5:
                     self.users[peer][1].task[0].get_json_keyboard(exit_but=True)
                     self.send_msg(peer, self.users[peer][1].task[0].word)
                     self.users[peer][0] = 6
-                else:
+                elif self.users[peer][0] == 6:
                     if event.object.text != 'Стоп':
                         kk = self.users[peer][1].current_task
                         check = self.users[peer][1].task[kk].check(event.object.text)[0]
@@ -124,12 +140,41 @@ class Server:
                         self.users[peer][0] = 7
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
                                       keyboard_index=6)
+                elif self.users[peer][0] == 10:
+                    self.users[peer][1].queque[0].get_json_keyboard()
+                    self.send_msg(peer, self.users[peer][1].queque[0].word)
+                    self.users[peer][0] = 11
+                elif self.users[peer][0] == 11:
+                    if event.object.text != 'Стоп':
+                        kk = self.users[peer][1].current_task
+                        if self.users[peer][1].queque[kk].check():
+                            self.send_msg(peer, 'Молодец', 2)
+                            self.users[peer][1].right += 1
+                        else:
+                            answer = self.users[peer][1].task[kk].answer_right
+                            self.send_msg(peer, f'Увы, но правильно произносить {answer}', 2)
+                        self.users[peer][1].current_task += 1
+                        if self.users[peer][1].current_task < 16:
+                            kk = self.users[peer][1].current_task
+                            self.users[peer][1].queque[kk].get_json_keyboard()
+                            self.send_msg(peer, self.users[peer][1].queque[kk].word)
+                        else:
+                            self.users[peer][0] = 7
+                            self.send_msg(peer,
+                                          f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
+                                          keyboard_index=9)
+                    else:
+                        self.users[peer][0] = 7
+                        self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
+                                      keyboard_index=9)
 
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
         return self.vk_api.users.get(user_id=user_id)[0]['first_name']
 
-    def start_cont(self, index, peer):
+    def start_orthoepy_cont(self, index, peer):
         assert isinstance(index, int)
         self.users[peer][1] = orfoepy_back.Task(peer, index)
-        print(self.users[peer][1].task[31])
+
+    def start_grammar_task(self, peer):
+        self.users[peer][1] = gm.GrammarTask(peer)
