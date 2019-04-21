@@ -81,6 +81,10 @@ class Server:
                             self.users[peer][0] = 1
                         elif self.users[peer][0] == 4:
                             self.users[peer][0] = 3
+                        elif self.users[peer][0] == 9:
+                            self.users[peer][0] = 8
+                        elif self.users[peer][0] == 8:
+                            self.users[peer][0] = 0
                     elif self.users[peer][0] == 4:
                         a = ["Августовский ... занял",
                              "Заняла ... нарвала",
