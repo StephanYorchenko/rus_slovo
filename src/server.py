@@ -6,6 +6,8 @@ from vk_api.bot_longpoll import VkBotEventType
 from src.backend import orfoepy_back
 import src.backend.grammar_norms as gm
 
+import os
+
 
 class Server:
     keyboards = [['keyboards/keyboard_home.json', 'Вы находитесь в главном меню'],
@@ -37,6 +39,7 @@ class Server:
                                           random_id=self.random_id,
                                           keyboard=open(f'keyboards/{send_id}.json', 'r',
                                                         encoding='UTF-8').read())
+                os.remove(f'keyboards/{send_id}.json')
             except FileNotFoundError:
                 self.vk_api.messages.send(peer_id=send_id,
                                           message=self.keyboards[5][1],
