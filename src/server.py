@@ -148,7 +148,9 @@ class Server:
                                       keyboard_index=6)
                 elif self.users[peer][0] == 10:
                     self.users[peer][1].queque[0].get_json_keyboard()
-                    self.send_msg(peer, self.users[peer][1].queque[0].word)
+                    self.send_msg(peer,
+                                  f'Образуй {self.users[peer][1].queque[0].quest}'
+                                  f' от слова {self.users[peer][1].queque[0].quest}')
                     self.users[peer][0] = 11
                 elif self.users[peer][0] == 11:
                     if event.object.text != 'Стоп':
@@ -158,7 +160,7 @@ class Server:
                             self.users[peer][1].right += 1
                         else:
                             answer = self.users[peer][1].queque[kk].answer_right
-                            self.send_msg(peer, f'Увы, но правильно произносить {answer}', 2)
+                            self.send_msg(peer, f'Увы, но правильно писать {answer}', 2)
                         self.users[peer][1].current_task += 1
                         if self.users[peer][1].current_task < 16:
                             kk = self.users[peer][1].current_task
