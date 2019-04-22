@@ -155,7 +155,7 @@ class Server:
                                       keyboard_index=6)
                 elif self.users[peer][0] == 10:
                     try:
-                        os.remove(f'keyboards/{peer}.json')
+                        os.remove(os.path.join(os.path.abspath(os.path.dirname(__file__)), f'keyboards/{peer}.json'))
                     except FileNotFoundError:
                         pass
                     self.users[peer][1].queque[0].get_json_keyboard()
