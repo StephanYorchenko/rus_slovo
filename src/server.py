@@ -182,11 +182,11 @@ class Server:
                         else:
                             self.users[peer][0] = 12
                             self.send_msg(peer,
-                                          f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
+                                          f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/16',
                                           keyboard_index=6)
                     else:
                         self.users[peer][0] = 12
-                        self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
+                        self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/16',
                                       keyboard_index=6)
 
     def get_user_name(self, user_id):
