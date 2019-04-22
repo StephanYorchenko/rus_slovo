@@ -122,8 +122,8 @@ class Server:
                 elif self.users[peer][0] == 6:
                     if event.object.text != 'Стоп':
                         kk = self.users[peer][1].current_task
-                        check = self.users[peer][1].task[kk].check(event.object.text)[0]
-                        if check:
+                        check = self.users[peer][1].task[kk].check(event.object.text)
+                        if check[0]:
                             if not check[1] == 3:
                                 self.send_msg(peer, 'Молодец', 2)
                             else:
