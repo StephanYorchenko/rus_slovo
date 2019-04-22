@@ -39,7 +39,7 @@ class Server:
                                           random_id=self.random_id,
                                           keyboard=open(f'keyboards/{send_id}.json', 'r',
                                                         encoding='UTF-8').read())
-                os.remove(f'keyboards/{send_id}.json')
+
             except FileNotFoundError:
                 self.vk_api.messages.send(peer_id=send_id,
                                           message=self.keyboards[5][1],
@@ -119,6 +119,7 @@ class Server:
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
 
                 elif self.users[peer][0] == 5:
+                    os.remove(f'keyboards/{peer}.json')
                     self.users[peer][1].task[0].get_json_keyboard(exit_but=True)
                     self.send_msg(peer, self.users[peer][1].task[0].word)
                     self.users[peer][0] = 6
@@ -150,6 +151,7 @@ class Server:
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
                                       keyboard_index=6)
                 elif self.users[peer][0] == 10:
+                    os.remove(f'keyboards/{peer}.json')
                     self.users[peer][1].queque[0].get_json_keyboard()
                     self.send_msg(peer,
                                   f'Образуй {self.users[peer][1].queque[0].quest}'
