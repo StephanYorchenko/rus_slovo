@@ -124,7 +124,7 @@ class Server:
                         kk = self.users[peer][1].current_task
                         check = self.users[peer][1].task[kk].check(event.object.text)
                         if check[0]:
-                            if not check[1] == 3:
+                            if check[1] == 3:
                                 self.send_msg(peer, 'Молодец', 2)
                             else:
                                 self.send_msg(peer, f'Молодец! Надеюсь, ты занешь что можно говорить и {check[1]}', 2)
