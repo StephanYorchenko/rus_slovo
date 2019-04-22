@@ -31,16 +31,16 @@ class Server:
         self.vk_api = self.vk.get_api()
         self.random_id = 0
 
-    def send_msg(self, send_id, message=False, keyboard_index=0):
+    def send_msg(self, send_id, message=False, keyboard_index=0, start=False):
         if self.users[send_id][0] in {5, 6, 10, 11}:
-            try:
+            if not start:
                 self.vk_api.messages.send(peer_id=send_id,
-                                          message=message,
-                                          random_id=self.random_id,
-                                          keyboard=open(f'keyboards/{send_id}.json', 'r',
-                                                        encoding='UTF-8').read())
+                                              message=message,
+                                              random_id=self.random_id,
+                                              keyboard=open(f'keyboards/{send_id}.json', 'r',
+                                                            encoding='UTF-8').read())
 
-            except FileNotFoundError:
+            else:
                 self.vk_api.messages.send(peer_id=send_id,
                                           message=self.keyboards[5][1],
                                           random_id=self.random_id,
@@ -94,7 +94,7 @@ class Server:
                             res = a.index(event.object.text)
                             self.start_orthoepy_cont(res + 1, peer)
                             self.users[peer][0] = 5
-                            self.send_msg(peer)
+                            self.send_msg(peer, start=True)
                             continue
                         except ValueError:
                             self.send_msg(peer, 'А виртуальную клавиатуру для кого придумали?', 2)
@@ -108,7 +108,7 @@ class Server:
                     elif self.users[peer][0] == 9 and event.object.text == 'Контрольная':
                         self.start_grammar_task(peer)
                         self.users[peer][0] = 10
-                        self.send_msg(peer)
+                        self.send_msg(peer, start=True)
                         continue
                     elif self.users[peer][0] == 12:
                         if event.object.text == "Попробовать заново":
@@ -119,10 +119,6 @@ class Server:
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
 
                 elif self.users[peer][0] == 5:
-                    try:
-                        os.remove(f'keyboards/{peer}.json')
-                    except FileNotFoundError:
-                        pass
                     self.users[peer][1].task[0].get_json_keyboard(exit_but=True)
                     self.send_msg(peer, self.users[peer][1].task[0].word)
                     self.users[peer][0] = 6
@@ -153,11 +149,9 @@ class Server:
                         self.users[peer][0] = 7
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
                                       keyboard_index=6)
+
                 elif self.users[peer][0] == 10:
-                    try:
-                        os.remove(os.path.join(os.path.abspath(os.path.dirname(__file__)), f'keyboards/{peer}.json'))
-                    except FileNotFoundError:
-                        pass
+
                     self.users[peer][1].queque[0].get_json_keyboard()
                     self.send_msg(peer,
                                   f'Образуй {self.users[peer][1].queque[0].quest}'
