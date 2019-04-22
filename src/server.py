@@ -177,8 +177,8 @@ class Server:
                             kk = self.users[peer][1].current_task
                             self.users[peer][1].queque[kk].get_json_keyboard()
                             self.send_msg(peer,
-                                          f'Образуй {self.users[peer][1].queque[0].quest}'
-                                          f' слова {self.users[peer][1].queque[0].word}')
+                                          f'Образуй {self.users[peer][1].queque[kk].quest}'
+                                          f' слова {self.users[peer][1].queque[kk].word}')
                         else:
                             self.users[peer][0] = 12
                             self.send_msg(peer,
