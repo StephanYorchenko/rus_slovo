@@ -119,7 +119,10 @@ class Server:
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
 
                 elif self.users[peer][0] == 5:
-                    os.remove(f'keyboards/{peer}.json')
+                    try:
+                        os.remove(f'keyboards/{peer}.json')
+                    except FileNotFoundError:
+                        pass
                     self.users[peer][1].task[0].get_json_keyboard(exit_but=True)
                     self.send_msg(peer, self.users[peer][1].task[0].word)
                     self.users[peer][0] = 6
@@ -151,7 +154,10 @@ class Server:
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/32',
                                       keyboard_index=6)
                 elif self.users[peer][0] == 10:
-                    os.remove(f'keyboards/{peer}.json')
+                    try:
+                        os.remove(f'keyboards/{peer}.json')
+                    except FileNotFoundError:
+                        pass
                     self.users[peer][1].queque[0].get_json_keyboard()
                     self.send_msg(peer,
                                   f'Образуй {self.users[peer][1].queque[0].quest}'
