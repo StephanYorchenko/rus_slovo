@@ -153,7 +153,7 @@ class Server:
                     self.users[peer][1].queque[0].get_json_keyboard()
                     self.send_msg(peer,
                                   f'Образуй {self.users[peer][1].queque[0].quest}'
-                                  f' от слова {self.users[peer][1].queque[0].quest}')
+                                  f' от слова {self.users[peer][1].queque[0].word}')
                     self.users[peer][0] = 11
                 elif self.users[peer][0] == 11:
                     if event.object.text != 'Стоп':
