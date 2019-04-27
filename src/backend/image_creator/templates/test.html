@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Statistic for user</title>
+    </head>
+   <style type="text/css">
+       p{
+            color: maroon;
+            text-align: center;
+            font-family: monospace;
+        }
+        body{
+            background-color: #fff2bd;
+        }
+   </style>
+    <body>
+        <p id="name">{{ name }}, Ваш результат:</p>
+        <hr>
+        <p id="score">{{right}}/{{all}}</p>
+        <hr>
+        <p id="message">В будущем советуем обратить внимание на следующие темы: {{text}}</p>
+    </body>
+</html>
