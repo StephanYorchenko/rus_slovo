@@ -38,7 +38,7 @@ class Server:
         self.random_id = 0
 
     def send_msg(self, send_id, message=False, keyboard_index=0, start=False):
-        if self.users[send_id][0] in {5, 6, 10, 11}:
+        if self.users[send_id][0] in {5, 6, 10, 11, 14, 15}:
             if not start:
                 self.vk_api.messages.send(peer_id=send_id,
                                           message=message,
@@ -65,7 +65,7 @@ class Server:
                 print(self.users, event.type, event.object.text, sep='     ')
                 peer = event.object.peer_id
                 self.users[peer][2] += 1
-                if self.users[peer][0] not in {5, 6, 10, 11}:
+                if self.users[peer][0] not in {5, 6, 10, 11, 14, 15}:
                     if self.users[peer][0] == -1:
                         self.send_msg(peer, keyboard_index=2)
                         self.keyboards[2][1] = 'Разрабоотано DvaTopora'
@@ -74,6 +74,11 @@ class Server:
                         self.users[peer][0] = 1
                     elif event.object.text == 'Орфографический' and self.users[peer][0] == 1:
                         self.users[peer][0] = 13
+                    elif event.object.text == 'Тренировка' and self.users[peer][0] == 13:
+                        self.start_orthography(peer)
+                        self.users[peer][0] = 14
+                        self.send_msg(peer, start=True)
+                        continue
                     elif event.object.text == "Грамматика" and not self.users[peer][0]:
                         self.users[peer][0] = 8
                     elif event.object.text == 'О боте' and not self.users[peer][0]:
@@ -112,6 +117,12 @@ class Server:
                     elif self.users[peer][0] == 12:
                         if event.object.text == "Попробовать заново":
                             self.users[peer][0] = 8
+                        else:
+                            self.users[peer][0] = 0
+
+                    elif self.users[peer][0] == 16:
+                        if event.object.text == "Попробовать заново":
+                            self.users[peer][0] = 13
                         else:
                             self.users[peer][0] = 0
 
@@ -182,6 +193,39 @@ class Server:
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/16',
                                       keyboard_index=6)
 
+                elif self.users[peer][0] == 14:
+
+                    self.users[peer][1].queue[0].get_json_keyboard()
+                    self.send_msg(peer,
+                                  f'Как правильно пишется {self.users[peer][1].queue[0].word}?')
+                    self.users[peer][0] = 15
+
+                elif self.users[peer][0] == 15:
+                    if event.object.text != 'Стоп':
+                        kk = self.users[peer][1].current_task
+                        if self.users[peer][1].queue[kk].check(event.object.text):
+                            self.send_msg(peer, 'Молодец', 2)
+                            self.users[peer][1].right += 1
+                        else:
+                            answer = self.users[peer][1].queue[kk].answer
+                            self.send_msg(peer, f'Увы, но правильно писать {answer}', 2)
+                        self.users[peer][1].current_task += 1
+                        if self.users[peer][1].current_task < 10:
+                            kk = self.users[peer][1].current_task
+                            self.users[peer][1].queue[kk].get_json_keyboard()
+                            self.send_msg(peer,
+                                          f'Как правильно пишется {self.users[peer][1].queue[0].word}?')
+                        else:
+                            self.users[peer][0] = 16
+                            self.send_msg(peer,
+                                          f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/10',
+                                          keyboard_index=6)
+                    else:
+                        self.users[peer][0] = 16
+                        self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/16',
+                                      keyboard_index=6)
+
+
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
         return self.vk_api.users.get(user_id=user_id)[0]['first_name']
@@ -192,3 +236,6 @@ class Server:
 
     def start_grammar_task(self, peer):
         self.users[peer][1] = gm.GrammarTask(peer)
+
+    def start_orthography(self, peer):
+        self.users[peer][1] = ob.OrthographyTask(peer)
