@@ -214,7 +214,7 @@ class Server:
                             kk = self.users[peer][1].current_task
                             self.users[peer][1].queue[kk].get_json_keyboard()
                             self.send_msg(peer,
-                                          f'Как правильно пишется {self.users[peer][1].queue[0].word}?')
+                                          f'Как правильно пишется {self.users[peer][1].queue[kk].word}?')
                         else:
                             self.users[peer][0] = 16
                             self.send_msg(peer,
