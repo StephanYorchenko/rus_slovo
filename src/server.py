@@ -5,27 +5,31 @@ from vk_api.bot_longpoll import VkBotEventType
 
 from src.backend import orfoepy_back
 import src.backend.grammar_norms as gm
-
-import os
-
-from src.backend.image_creator.creator import HTMLConventor
-
+import src.backend.orthography_back as ob
 
 class Server:
-    keyboards = [['keyboards/keyboard_home.json', 'Вы находитесь в главном меню'],
-                 ['keyboards/keyboard_type_dictation.json', 'Какой диктант предпочтёте писать?'],
-                 ['keyboards/keyboard_none.json', 'Рад Вас видеть!'],
-                 ['keyboards/keyboard_mode_dictation.json', 'Потренируемся или напишем контрольную?'],
-                 ['keyboards/keyboard_task.json', 'Выберите задание из предложенного списка:'],
-                 ['keyboards/keyboard_start.json', 'Нажмите, чтобы начать'],
-                 ['keyboards/keyboard_next.json', 'Выберите дальнейшее действие'],
-                 [],
-                 ['keyboards/keyboard_grammar_mode.json', 'Какое задание предпочтёте?'],
-                 ['keyboards/keyboard_mode_dictation.json', 'Потренируемся или напишем контрольную?'],
-                 ['keyboards/keyboard_next.json', 'Выберите дальнейшее действие'],
-                 ]
+    keyboards = {0: ['keyboards/keyboard_home.json', 'Вы находитесь в главном меню'],
+                 1: ['keyboards/keyboard_type_dictation.json', 'Какой диктант предпочтёте писать?'],
+                 2: ['keyboards/keyboard_none.json', 'Рад Вас видеть!'],
+                 3: ['keyboards/keyboard_mode_dictation.json', 'Потренируемся или напишем контрольную?'],
+                 4: ['keyboards/keyboard_task.json', 'Выберите задание из предложенного списка:'],
+                 5: ['keyboards/keyboard_start.json', 'Нажмите, чтобы начать'],
+                 6: ['keyboards/keyboard_next.json', 'Выберите дальнейшее действие'],
+                 7: [],
+                 8: ['keyboards/keyboard_grammar_mode.json', 'Какое задание предпочтёте?'],
+                 9: ['keyboards/keyboard_mode_dictation.json', 'Потренируемся или напишем контрольную?'],
+                 10: ['keyboards/keyboard_next.json', 'Выберите дальнейшее действие'],
+                 13: ['keyboards/keyboard_mode_dictation.json', 'Потренируемся или напишем контрольную?']
+                 }
 
     users = orfoepy_back.UserDict()
+
+    back_button = {1: 0,
+                   3: 1,
+                   4: 3,
+                   9: 8,
+                   8: 0,
+                   13:0}
 
     def __init__(self, token, group_id):
         self.vk = vk_api.VkApi(token=token)
@@ -34,13 +38,13 @@ class Server:
         self.random_id = 0
 
     def send_msg(self, send_id, message=False, keyboard_index=0, start=False):
-        if self.users[send_id][0] in {5, 6, 10, 11}:
+        if self.users[send_id][0] in {5, 6, 10, 11, 14, 15}:
             if not start:
                 self.vk_api.messages.send(peer_id=send_id,
-                                              message=message,
-                                              random_id=self.random_id,
-                                              keyboard=open(f'keyboards/{send_id}.json', 'r',
-                                                            encoding='UTF-8').read())
+                                          message=message,
+                                          random_id=self.random_id,
+                                          keyboard=open(f'keyboards/{send_id}.json', 'r',
+                                                        encoding='UTF-8').read())
 
             else:
                 self.vk_api.messages.send(peer_id=send_id,
@@ -61,32 +65,30 @@ class Server:
                 print(self.users, event.type, event.object.text, sep='     ')
                 peer = event.object.peer_id
                 self.users[peer][2] += 1
-                if self.users[peer][0] not in {5, 6, 10, 11}:
+                if self.users[peer][0] not in {5, 6, 10, 11, 14, 15}:
                     if self.users[peer][0] == -1:
                         self.send_msg(peer, keyboard_index=2)
                         self.keyboards[2][1] = 'Разрабоотано DvaTopora'
                         self.users[peer][0] = 0
                     if event.object.text == 'Диктант' and not self.users[peer][0]:
                         self.users[peer][0] = 1
+                    elif event.object.text == 'Орфографический' and self.users[peer][0] == 1:
+                        self.users[peer][0] = 13
+                    elif event.object.text == 'Тренировка' and self.users[peer][0] == 13:
+                        self.start_orthography(peer)
+                        self.users[peer][0] = 14
+                        self.send_msg(peer, start=True)
+                        continue
                     elif event.object.text == "Грамматика" and not self.users[peer][0]:
                         self.users[peer][0] = 8
                     elif event.object.text == 'О боте' and not self.users[peer][0]:
                         self.send_msg(peer, keyboard_index=2)
                     elif event.object.text == 'Орфоэпический' and self.users[peer][0] == 1:
                         self.users[peer][0] = 3
-                    elif self.users[peer][0] == 3 and event.object.text == 'Контрольная':
+                    elif self.users[peer][0] == 3 and event.object.text == 'Тренировка':
                         self.users[peer][0] = 4
-                    elif event.object.text == 'Назад':
-                        if self.users[peer][0] == 1:
-                            self.users[peer][0] = 0
-                        elif self.users[peer][0] == 3:
-                            self.users[peer][0] = 1
-                        elif self.users[peer][0] == 4:
-                            self.users[peer][0] = 3
-                        elif self.users[peer][0] == 9:
-                            self.users[peer][0] = 8
-                        elif self.users[peer][0] == 8:
-                            self.users[peer][0] = 0
+                    elif event.object.text == 'Назад' and self.users[peer][0] in self.back_button.keys():
+                        self.users[peer][0] = self.back_button[self.users[peer][0]]
                     elif self.users[peer][0] == 4:
                         a = ["Августовский ... занял",
                              "Заняла ... нарвала",
@@ -107,7 +109,7 @@ class Server:
                             self.users[peer][0] = 0
                     elif self.users[peer][0] == 8 and event.object.text == "Грамматические нормы":
                         self.users[peer][0] = 9
-                    elif self.users[peer][0] == 9 and event.object.text == 'Контрольная':
+                    elif self.users[peer][0] == 9 and event.object.text == 'Тренировка':
                         self.start_grammar_task(peer)
                         self.users[peer][0] = 10
                         self.send_msg(peer, start=True)
@@ -115,6 +117,12 @@ class Server:
                     elif self.users[peer][0] == 12:
                         if event.object.text == "Попробовать заново":
                             self.users[peer][0] = 8
+                        else:
+                            self.users[peer][0] = 0
+
+                    elif self.users[peer][0] == 16:
+                        if event.object.text == "Попробовать заново":
+                            self.users[peer][0] = 13
                         else:
                             self.users[peer][0] = 0
 
@@ -185,6 +193,39 @@ class Server:
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/16',
                                       keyboard_index=6)
 
+                elif self.users[peer][0] == 14:
+
+                    self.users[peer][1].queue[0].get_json_keyboard()
+                    self.send_msg(peer,
+                                  f'Как правильно пишется {self.users[peer][1].queue[0].word}?')
+                    self.users[peer][0] = 15
+
+                elif self.users[peer][0] == 15:
+                    if event.object.text != 'Стоп':
+                        kk = self.users[peer][1].current_task
+                        if self.users[peer][1].queue[kk].check(event.object.text):
+                            self.send_msg(peer, 'Молодец', 2)
+                            self.users[peer][1].right += 1
+                        else:
+                            answer = self.users[peer][1].queue[kk].answer
+                            self.send_msg(peer, f'Увы, но правильно писать {answer}', 2)
+                        self.users[peer][1].current_task += 1
+                        if self.users[peer][1].current_task < 10:
+                            kk = self.users[peer][1].current_task
+                            self.users[peer][1].queue[kk].get_json_keyboard()
+                            self.send_msg(peer,
+                                          f'Как правильно пишется {self.users[peer][1].queue[0].word}?')
+                        else:
+                            self.users[peer][0] = 16
+                            self.send_msg(peer,
+                                          f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/10',
+                                          keyboard_index=6)
+                    else:
+                        self.users[peer][0] = 16
+                        self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/16',
+                                      keyboard_index=6)
+
+
     def get_user_name(self, user_id):
         """ Получаем имя пользователя"""
         return self.vk_api.users.get(user_id=user_id)[0]['first_name']
@@ -195,3 +236,6 @@ class Server:
 
     def start_grammar_task(self, peer):
         self.users[peer][1] = gm.GrammarTask(peer)
+
+    def start_orthography(self, peer):
+        self.users[peer][1] = ob.OrthographyTask(peer)

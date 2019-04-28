@@ -6,12 +6,13 @@ import json
 
 
 class OrthographyQuestion:
-    def __init__(self, type_task, **kwargs):
+    def __init__(self, **kwargs):
+        # TODO: add type_task checker
         self.peer = kwargs['peer']
-        if type_task == 1:
-            self.answer = kwargs['word']
-            self.buttons = [kwargs['answer'], kwargs['wrong']]
-            random.shuffle(self.answer)
+        self.word = kwargs['word']
+        self.answer = kwargs['answer']
+        self.buttons = [kwargs['answer'], kwargs['wrong']]
+        random.shuffle(self.buttons)
 
     def check(self, answer):
         return self.answer == answer
@@ -52,28 +53,27 @@ class OrthographyQuestion:
 
 
 class OrthographyTask:
-    def __init__(self, peer, type_task):
+    def __init__(self, peer):
+        # TODO: add type_task arg
         self.peer = peer
-        self.queue = self.create_task(type_task)
-        self.current = 0
+        self.queue = self.create_task(peer)
+        self.current_task = 0
         self.right = 0
 
-    def create_task(self, type_task, peer):
-        return [OrthographyQuestion(type_task=type_task, peer=peer, word=word, wrong=wrong, answer=answer)
-                for word, answer, wrong in self.select_task(type_task)]
+    def create_task(self, peer):
+        return [OrthographyQuestion(peer=peer, word=word, wrong=wrong, answer=answer)
+                for word, answer, wrong in self.select_task()]
 
     @staticmethod
-    def select_task(type_task):
+    def select_task():
         con = sqlite3.connect(r'src/rus_slovo.db')
-        sql = f"SELECT word, answer, wrong FROM orthography WHERE type_task={type_task}"
+        sql = f"SELECT word, answer, wrong FROM orthography WHERE type_task=1"
+        # TODO: check what is wrong with select where type is given???
         cur = con.cursor()
         c = list(cur.execute(sql))
         random.shuffle(c)
         cur.fetchall()
         cur.close()
         con.close()
+        print(c)
         return c[:10]
-
-
-if __name__ == '__main__':
-    a = OrthographyQuestion(1, word='предыстория', wrong='предистория')
