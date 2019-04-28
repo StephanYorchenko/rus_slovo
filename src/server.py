@@ -29,7 +29,7 @@ class Server:
                    4: 3,
                    9: 8,
                    8: 0,
-                   13:0}
+                   13: 1}
 
     def __init__(self, token, group_id):
         self.vk = vk_api.VkApi(token=token)
