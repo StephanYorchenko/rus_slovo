@@ -4,14 +4,14 @@
     [{
       "action": {
         "type": "text",
-        "label": "Контрольная"
+        "label": "Тренировка"
       },
       "color": "positive"
     },
       {
         "action": {
           "type": "text",
-          "label": "Тренировка"
+          "label": "Формат ЕГЭ"
         },
         "color": "positive"
       }],
