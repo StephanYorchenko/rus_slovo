@@ -1,10 +1,10 @@
 import imgkit
 from jinja2 import Environment, FileSystemLoader
-
+import os
 
 class HTMLConventor:
     def __init__(self, html_name):
-        self.loader = FileSystemLoader('./templates')
+        self.loader = FileSystemLoader(os.getcwd()+'/templates')
         self.env = Environment(loader=self.loader, trim_blocks=True, lstrip_blocks=True)
         self.template = self.env.get_template(html_name)
 

@@ -8,6 +8,8 @@ import src.backend.grammar_norms as gm
 
 import os
 
+from src.backend.image_creator.creator import HTMLConventor
+
 
 class Server:
     keyboards = [['keyboards/keyboard_home.json', 'Вы находитесь в главном меню'],

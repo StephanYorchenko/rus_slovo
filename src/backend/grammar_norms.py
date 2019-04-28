@@ -3,6 +3,7 @@ import sqlite3
 import random
 
 
+
 class GrammarQuestion:
     def __init__(self, word, answer_right, answer_wrong, quest, peer):
         self.word = word
