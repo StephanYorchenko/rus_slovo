@@ -117,34 +117,44 @@
       <DataType>TEXT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="31" parent="9">
+    <index id="31" parent="9" name="sqlite_autoindex_orthography_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>answer</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="32" parent="9">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="32" parent="10" name="type">
+    <key id="33" parent="9">
+      <ColNames>answer</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_orthography_1</UnderlyingIndexName>
+    </key>
+    <column id="34" parent="10" name="type">
       <Position>1</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="33" parent="10" name="name">
+    <column id="35" parent="10" name="name">
       <Position>2</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="34" parent="10" name="tbl_name">
+    <column id="36" parent="10" name="tbl_name">
       <Position>3</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="35" parent="10" name="rootpage">
+    <column id="37" parent="10" name="rootpage">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="36" parent="10" name="sql">
+    <column id="38" parent="10" name="sql">
       <Position>5</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="37" parent="11" name="name">
+    <column id="39" parent="11" name="name">
       <Position>1</Position>
     </column>
-    <column id="38" parent="11" name="seq">
+    <column id="40" parent="11" name="seq">
       <Position>2</Position>
     </column>
   </database-model>
