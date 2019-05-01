@@ -125,7 +125,11 @@ class Server:
 
                     elif self.users[peer][0] == 16:
                         if event.object.text == "Попробовать заново":
-                            self.users[peer][0] = 13
+                            self.start_grammar_task(peer)
+                            self.users[peer][0] = 10
+                            self.send_msg(peer, start=True)
+                            continue
+                            # self.users[peer][0] = 13
                         else:
                             self.users[peer][0] = 0
 
