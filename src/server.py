@@ -119,17 +119,16 @@ class Server:
                         continue
                     elif self.users[peer][0] == 12:
                         if event.object.text == "Попробовать заново":
-                            self.users[peer][0] = 8
+                            self.start_grammar_task(peer)
+                            self.users[peer][0] = 10
+                            self.send_msg(peer, start=True)
+                            continue
                         else:
                             self.users[peer][0] = 0
 
                     elif self.users[peer][0] == 16:
                         if event.object.text == "Попробовать заново":
-                            self.start_grammar_task(peer)
-                            self.users[peer][0] = 10
-                            self.send_msg(peer, start=True)
-                            continue
-                            # self.users[peer][0] = 13
+                            self.users[peer][0] = 13
                         else:
                             self.users[peer][0] = 0
 
