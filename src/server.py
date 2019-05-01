@@ -7,6 +7,11 @@ from src.backend import orfoepy_back
 import src.backend.grammar_norms as gm
 import src.backend.orthography_back as ob
 
+import os
+
+from src.backend.image_creator.creator import HTMLConventor
+
+
 class Server:
     keyboards = {0: ['keyboards/keyboard_home.json', 'Вы находитесь в главном меню'],
                  1: ['keyboards/keyboard_type_dictation.json', 'Какой диктант предпочтёте писать?'],
@@ -38,7 +43,7 @@ class Server:
         self.random_id = 0
 
     def send_msg(self, send_id, message=False, keyboard_index=0, start=False):
-        if self.users[send_id][0] in {5, 6, 10, 11, 14, 15}:
+        if self.users[send_id][0] in {5, 6, 10, 11}:
             if not start:
                 self.vk_api.messages.send(peer_id=send_id,
                                           message=message,

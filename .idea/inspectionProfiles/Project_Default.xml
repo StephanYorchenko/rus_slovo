@@ -5,6 +5,7 @@
       <option name="ignoredNames">
         <list>
           <option value="exit" />
+          <option value="all" />
         </list>
       </option>
     </inspection_tool>
