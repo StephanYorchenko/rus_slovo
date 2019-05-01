@@ -71,7 +71,7 @@ class Server:
                 if self.users[peer][0] not in {5, 6, 10, 11, 14, 15}:
                     if self.users[peer][0] == -1:
                         self.send_msg(peer, keyboard_index=2)
-                        self.keyboards[2][1] = 'Разрабоотано DvaTopora'
+                        self.keyboards[2][1] = 'Разработано DvaTopora'
                         self.users[peer][0] = 0
                     if event.object.text == 'Диктант' and not self.users[peer][0]:
                         self.users[peer][0] = 1
