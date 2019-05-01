@@ -7,8 +7,6 @@ from src.backend import orfoepy_back
 import src.backend.grammar_norms as gm
 import src.backend.orthography_back as ob
 
-import os
-
 from src.backend.image_creator.creator import HTMLConventor
 
 
