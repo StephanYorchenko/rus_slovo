@@ -41,7 +41,7 @@ class Server:
         self.random_id = 0
 
     def send_msg(self, send_id, message=False, keyboard_index=0, start=False):
-        if self.users[send_id][0] in {5, 6, 10, 11}:
+        if self.users[send_id][0] in {5, 6, 10, 11, 14, 15}:
             if not start:
                 self.vk_api.messages.send(peer_id=send_id,
                                           message=message,
