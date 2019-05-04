@@ -75,5 +75,4 @@ class OrthographyTask:
         cur.fetchall()
         cur.close()
         con.close()
-        print(c)
         return c[:10]
