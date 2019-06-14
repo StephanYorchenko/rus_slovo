@@ -41,25 +41,44 @@ class Server:
         self.random_id = 0
 
     def send_msg(self, send_id, message=False, keyboard_index=0, start=False):
-        if self.users[send_id][0] in {5, 6, 10, 11, 14, 15}:
-            if not start:
-                self.vk_api.messages.send(peer_id=send_id,
-                                          message=message,
-                                          random_id=self.random_id,
-                                          keyboard=open(f'keyboards/{send_id}.json', 'r',
-                                                        encoding='UTF-8').read())
 
-            else:
-                self.vk_api.messages.send(peer_id=send_id,
-                                          message=self.keyboards[5][1],
-                                          random_id=self.random_id,
-                                          keyboard=open(self.keyboards[5][0], "r", encoding="UTF-8").read())
+        """Распределение типов сообщений по методам"""
+
+        if self.users[send_id][0] in {5, 6, 10, 11, 14, 15}:
+            self.test_messages(send_id, message, start)
         else:
-            self.vk_api.messages.send(peer_id=send_id,
-                                      message=self.keyboards[keyboard_index][1] if not message else message,
-                                      random_id=self.random_id,
-                                      keyboard=open(self.keyboards[keyboard_index][0], "r", encoding="UTF-8").read())
+            self.standard_message(send_id, keyboard_index, message)
         self.random_id += 1
+
+    def test_messages(self, send_id, message, start):
+
+        """Отправка сообщений во время прохождения тестирования"""
+
+        if not start:
+            self.vk_api.messages.send(peer_id=send_id,
+                                      message=message,
+                                      random_id=self.random_id,
+                                      keyboard=open(f'keyboards/{send_id}.json', 'r',
+                                                    encoding='UTF-8').read())
+        else:
+            self.start_test_message(send_id)
+
+    def start_test_message(self, send_id):
+
+        """Отправка стартового сообщения при запуске теста"""
+
+        self.vk_api.messages.send(peer_id=send_id,
+                                  message=self.keyboards[5][1],
+                                  random_id=self.random_id,
+                                  keyboard=open(self.keyboards[5][0], "r", encoding="UTF-8").read())
+
+    def standard_message(self, send_id, keyboard_index, message):
+
+        """Отправка стандартых сообщений (меню и прочее)"""
+        self.vk_api.messages.send(peer_id=send_id,
+                                  message=self.keyboards[keyboard_index][1] if not message else message,
+                                  random_id=self.random_id,
+                                  keyboard=open(self.keyboards[keyboard_index][0], "r", encoding="UTF-8").read())
 
     def start(self):
         print('@home')
@@ -231,17 +250,27 @@ class Server:
                         self.send_msg(peer, f'{self.get_user_name(peer)}, Ваш результат {self.users[peer][1].right}/16',
                                       keyboard_index=6)
 
-
     def get_user_name(self, user_id):
+
         """ Получаем имя пользователя"""
+
         return self.vk_api.users.get(user_id=user_id)[0]['first_name']
 
     def start_orthoepy_cont(self, index, peer):
+
+        """ Запускаем тест по орфоэпии"""
+
         assert isinstance(index, int)
         self.users[peer][1] = orfoepy_back.Task(peer, index)
 
     def start_grammar_task(self, peer):
+
+        """ Запускаем тест по грамматическим нормам"""
+
         self.users[peer][1] = gm.GrammarTask(peer)
 
     def start_orthography(self, peer):
+
+        """ Запускаем тест по орфографии"""
+
         self.users[peer][1] = ob.OrthographyTask(peer)
