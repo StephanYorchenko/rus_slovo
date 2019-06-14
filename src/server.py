@@ -75,12 +75,15 @@ class Server:
     def standard_message(self, send_id, keyboard_index, message):
 
         """Отправка стандартых сообщений (меню и прочее)"""
+
         self.vk_api.messages.send(peer_id=send_id,
                                   message=self.keyboards[keyboard_index][1] if not message else message,
                                   random_id=self.random_id,
                                   keyboard=open(self.keyboards[keyboard_index][0], "r", encoding="UTF-8").read())
 
     def start(self):
+        #TODO: rewrite this method. It's too large!
+
         print('@home')
         for event in self.long_poll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
