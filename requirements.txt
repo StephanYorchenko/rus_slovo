@@ -10,3 +10,4 @@ setuptools==40.8.0
 six==1.12.0
 urllib3>=1.24.2
 vk-api==11.4.0
+flask
