@@ -1,7 +1,7 @@
-from src.server import Server
-from src.config import token, group_id
+from flask import Flask
 
-server1 = Server(token, group_id)
+app = Flask(__name__)
 
-server1.start()
-
+@app.route('/')
+def hello_world():
+    return 'Hello from Flask'
