@@ -7,8 +7,6 @@ from src.backend import orfoepy_back
 import src.backend.grammar_norms as gm
 import src.backend.orthography_back as ob
 
-from src.backend.image_creator.creator import HTMLConventor
-
 
 class Server:
     keyboards = {0: ['keyboards/keyboard_home.json', 'Вы находитесь в главном меню'],
@@ -82,7 +80,7 @@ class Server:
                                   keyboard=open(self.keyboards[keyboard_index][0], "r", encoding="UTF-8").read())
 
     def start(self):
-        #TODO: rewrite this method. It's too large!
+        # TODO: rewrite this method. It's too large!
 
         print('@home')
         for event in self.long_poll.listen():
