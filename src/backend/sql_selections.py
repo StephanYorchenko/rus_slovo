@@ -22,7 +22,7 @@ class DataSource(object):
                 selection_criteria = ' and '.join(list(map(lambda x: f"{x}={selection_criteria[x] if type(selection_criteria[x]) != str else self.make_quoted_string(selection_criteria[x])}", selection_criteria.keys())))
             else:
                 selection_criteria = 'id'
-            required_fields = ' '.join(required_fields) if required_fields else '*'
+            required_fields = ', '.join(required_fields) if required_fields else '*'
             sql = f"SELECT {required_fields} FROM {table_name} WHERE {selection_criteria};"
             print(sql)
             cursor = connection.cursor()
