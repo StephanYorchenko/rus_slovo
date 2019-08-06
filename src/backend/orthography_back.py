@@ -3,6 +3,7 @@
 import random
 import sqlite3
 import json
+import src.backend.sql_selections as ss
 
 
 class OrthographyQuestion:
@@ -66,13 +67,8 @@ class OrthographyTask:
 
     @staticmethod
     def select_task():
-        con = sqlite3.connect(r'src/rus_slovo.db')
-        sql = f"SELECT word, answer, wrong FROM orthography WHERE type_task=1"
-        # TODO: check what is wrong with select where type is given???
-        cur = con.cursor()
-        c = list(cur.execute(sql))
-        random.shuffle(c)
-        cur.fetchall()
-        cur.close()
-        con.close()
-        return c[:10]
+        data = ss.DataSource(r'src/rus_slovo.db')
+        result = data.sql_select('orthography', ['word', 'answer', 'wrong'], {'type_task': 1})
+        random.shuffle(result)
+        return result[:10]
+
