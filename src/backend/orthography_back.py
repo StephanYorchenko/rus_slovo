@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import random
-import sqlite3
 import json
+
 import src.backend.sql_selections as ss
 
 
