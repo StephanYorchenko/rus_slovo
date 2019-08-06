@@ -95,7 +95,7 @@ class UserDict(dict):
     def __getitem__(self, peer_id):
         if peer_id not in self.keys():
             self[peer_id] = [-1, Task(), 0, 0]
-        return self[peer_id]
+        return super().__getitem__(peer_id)
 
     def __str__(self):
         return f'<------ {len(self.keys())} records---->'
