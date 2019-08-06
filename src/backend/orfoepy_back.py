@@ -71,17 +71,10 @@ class Task:
 
     @staticmethod
     def selector(index):
-        con = sqlite3.connect(r'src/rus_slovo.db')
-        sql = "SELECT answer FROM orfo_dictation"
-        if index:
-            sql += f' WHERE index_task = {index}'
-        cur = con.cursor()
-        c = list(cur.execute(sql))
-        random.shuffle(c)
-        cur.fetchall()
-        cur.close()
-        con.close()
-        return c[:32]
+        data = ss.DataSource(r'src/rus_slovo.db')
+        result = data.sql_select('orfo_dictation', ['answer'], {'index_task': index})
+        random.shuffle(result)
+        return result[:32]
 
     @staticmethod
     def question_creator(array, peer):
