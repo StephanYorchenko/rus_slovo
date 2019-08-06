@@ -3,6 +3,7 @@
 import random
 import json
 import sqlite3
+import src.backend.sql_selections as ss
 
 
 class Question:
@@ -87,48 +88,25 @@ class Task:
         return [Question(i[0], peer) for i in array]
 
 
-class UserDict:
+class UserDict(dict):
     def __init__(self):
-        self.users = {}
+        super().__init__()
 
     def __getitem__(self, peer_id):
-        if peer_id not in self.users.keys():
-            self.users[peer_id] = [-1, Task(), 0, 0]
-        # self.update(peer_id)
-        return self.users[peer_id]
-
-    @staticmethod
-    def get_record(peer_id):
-        con = sqlite3.connect(r'src/rus_slovo.db')
-        sql = f"SELECT action_id, total_rank FROM Users WHERE vk_id = {peer_id}"
-        cur = con.cursor()
-        c = list(cur.execute(sql))
-        cur.fetchall()
-        cur.close()
-        con.close()
-        return c
-
-    def update(self, peer_id):
-        a = self.get_record(peer_id)
-        if not a:
-            with sqlite3.connect(r'src/rus_slovo.db') as con:
-                cur = con.cursor()
-                sql = f"INSERT INTO Users (vk_id, action_id, total_rank) VALUES ({peer_id}, {self.users[peer_id][2]}, {self.users[peer_id][3]})"
-                cur.execute(sql)
-                cur.fetchall()
-                con.commit()
-                cur.close()
-        else:
-            if a[0][0] > self.users[peer_id][2]:
-                self.users[peer_id][2], self.users[peer_id][3] = a[0]
-            elif a[0][0] < self.users[peer_id][2]:
-                with sqlite3.connect(r'src/rus_slovo.db') as con:
-                    cur = con.cursor()
-                    sql = f"UPDATE Users SET action_id = {self.users[peer_id][2]}, total_rank = {self.users[peer_id][3]} WHERE vk_id = {peer_id};"
-                    cur.execute(sql)
-                    cur.fetchall()
-                    con.commit()
-                    cur.close()
+        if peer_id not in self.keys():
+            self[peer_id] = [-1, Task(), 0, 0]
+        return self[peer_id]
 
     def __str__(self):
-        return f'<------ {len(self.users.keys())} records---->'
+        return f'<------ {len(self.keys())} records---->'
+
+    def get_next_stat(self, peer, button_name):
+        """
+        Getting new users position in menu
+        :param peer: peer of user, takes from vk_api
+        :param button_name: name of clicked button from current UI
+        :change: current position of user in UI
+        """
+        data_base = ss.DataSource(r'src/controllers')
+        self[peer][0] = data_base.sql_select('Buttons', ['next_stat'], {'current_stat': self[peer][0],
+                                                                        'button_name': button_name})
