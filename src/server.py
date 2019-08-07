@@ -99,8 +99,6 @@ class Server:
                         self.users[peer][0] = 13
                     elif event.object.text == 'Тренировка' and self.users[peer][0] == 13:
                         self.start_orthography(peer)
-                        self.users[peer][0] = 14
-                        self.send_msg(peer, start=True)
                         continue
                     elif event.object.text == "Грамматика" and not self.users[peer][0]:
                         self.users[peer][0] = 8
@@ -120,8 +118,6 @@ class Server:
                         try:
                             res = a.index(event.object.text)
                             self.start_orthoepy_cont(res + 1, peer)
-                            self.users[peer][0] = 5
-                            self.send_msg(peer, start=True)
                             continue
                         except ValueError:
                             self.send_msg(peer, 'А виртуальную клавиатуру для кого придумали?', 2)
@@ -134,14 +130,10 @@ class Server:
                         self.users[peer][0] = 9
                     elif self.users[peer][0] == 9 and event.object.text == 'Тренировка':
                         self.start_grammar_task(peer)
-                        self.users[peer][0] = 10
-                        self.send_msg(peer, start=True)
                         continue
                     elif self.users[peer][0] == 12:
                         if event.object.text == "Попробовать заново":
                             self.start_grammar_task(peer)
-                            self.users[peer][0] = 10
-                            self.send_msg(peer, start=True)
                             continue
                         else:
                             self.users[peer][0] = 0
@@ -261,17 +253,23 @@ class Server:
 
         """ Запускаем тест по орфоэпии"""
 
-        assert isinstance(index, int)
+        assert isinstance(index, int), "Wrong index value (must be int())"
         self.users[peer][1] = orfoepy_back.Task(peer, index)
+        self.users[peer][0] = 5
+        self.send_msg(peer, start=True)
 
     def start_grammar_task(self, peer):
 
         """ Запускаем тест по грамматическим нормам"""
 
         self.users[peer][1] = gm.GrammarTask(peer)
+        self.users[peer][0] = 10
+        self.send_msg(peer, start=True)
 
     def start_orthography(self, peer):
 
         """ Запускаем тест по орфографии"""
 
         self.users[peer][1] = ob.OrthographyTask(peer)
+        self.users[peer][0] = 14
+        self.send_msg(peer, start=True)
