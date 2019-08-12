@@ -83,9 +83,11 @@ class Server:
                 peer = event.object.peer_id
                 self.users[peer][2] += 1
                 if self.users[peer][0] not in {5, 6, 10, 11, 14, 15}:
+
                     next_stat, execute = self.get_action(peer, event.object.text)
                     self.users[peer][0] = next_stat
                     exec(execute)
+
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
 
                 elif self.users[peer][0] == 5:
@@ -197,7 +199,6 @@ class Server:
 
         assert isinstance(index, int), "Wrong index value (must be int())"
         self.users[peer][1] = orfoepy_back.Task(peer, index)
-
         self.send_msg(peer, start=True)
 
     def start_grammar_task(self, peer):
@@ -205,7 +206,6 @@ class Server:
         """ Запускаем тест по грамматическим нормам"""
 
         self.users[peer][1] = gm.GrammarTask(peer)
-
         self.send_msg(peer, start=True)
 
     def start_orthography_task(self, peer):
