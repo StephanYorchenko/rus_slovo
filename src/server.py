@@ -91,10 +91,12 @@ class Server:
                         self.users[peer][0] = 0
                     else:
                         try:
-                            next_stat, execute = self.get_action(peer, event.object.text)
+                            next_stat, execute, cont = self.get_action(peer, event.object.text)
                             print(next_stat, execute)
                             self.users[peer][0] = next_stat
                             exec(execute)
+                            if cont:
+                                continue
                         except ValueError:
                             pass
 
@@ -231,7 +233,7 @@ class Server:
 
         data = ss.DataSource(r'src/controllers')
         next_stat, execute = data.sql_select('Button',
-                                             ['next_stat', 'execute'],
+                                             ['next_stat', 'execute', 'continue'],
                                              {'cur_stat': self.users[peer][0],
                                               'button_name': button_name})[0]
         return next_stat, execute
