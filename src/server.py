@@ -97,7 +97,7 @@ class Server:
                             exec(execute)
                             if cont:
                                 continue
-                        except ValueError:
+                        except IndexError:
                             pass
 
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
