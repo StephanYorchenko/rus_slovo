@@ -92,9 +92,10 @@ class Server:
                     else:
                         try:
                             next_stat, execute = self.get_action(peer, event.object.text)
+                            print(next_stat, execute)
                             self.users[peer][0] = next_stat
                             exec(execute)
-                        except sqlite3.OperationalError:
+                        except ValueError:
                             pass
 
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
