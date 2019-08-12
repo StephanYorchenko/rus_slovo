@@ -233,5 +233,5 @@ class Server:
         next_stat, execute = data.sql_select('Button',
                                              ['next_stat', 'execute'],
                                              {'cur_stat': self.users[peer][0],
-                                              'button_name': button_name})
+                                              'button_name': button_name})[0]
         return next_stat, execute
