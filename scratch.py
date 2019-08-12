@@ -5,10 +5,12 @@ class Art:
     def tyrol(self):
         return f'----{self.name}-----'
 
-    def main(self, peer):
+    def main(self):
         print('@')
-        exec('print(peer)\nprint(self.tyrol())')
+        for i in range(10):
+            exec('continue')
+            print(2)
 
 
 a = Art()
-a.main('12')
+a.main()

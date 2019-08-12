@@ -232,8 +232,8 @@ class Server:
         """ Getting data from database """
 
         data = ss.DataSource(r'src/controllers')
-        next_stat, execute = data.sql_select('Button',
+        next_stat, execute, cont = data.sql_select('Button',
                                              ['next_stat', 'execute', 'continue'],
                                              {'cur_stat': self.users[peer][0],
                                               'button_name': button_name})[0]
-        return next_stat, execute
+        return next_stat, execute, cont
