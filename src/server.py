@@ -1,3 +1,5 @@
+import sqlite3
+
 import vk_api
 
 from vk_api.bot_longpoll import VkBotLongPoll
@@ -83,10 +85,17 @@ class Server:
                 peer = event.object.peer_id
                 self.users[peer][2] += 1
                 if self.users[peer][0] not in {5, 6, 10, 11, 14, 15}:
-
-                    next_stat, execute = self.get_action(peer, event.object.text)
-                    self.users[peer][0] = next_stat
-                    exec(execute)
+                    if self.users[peer][0] == -1:
+                        self.send_msg(peer, keyboard_index=2)
+                        self.keyboards[2][1] = 'Разработано DvaTopora'
+                        self.users[peer][0] = 0
+                    else:
+                        try:
+                            next_stat, execute = self.get_action(peer, event.object.text)
+                            self.users[peer][0] = next_stat
+                            exec(execute)
+                        except sqlite3.OperationalError:
+                            pass
 
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
 
@@ -220,7 +229,7 @@ class Server:
         """ Getting data from database """
 
         data = ss.DataSource(r'src/controllers')
-        next_stat, execute = data.sql_select('Buttons',
+        next_stat, execute = data.sql_select('Button',
                                              ['next_stat', 'execute'],
                                              {'cur_stat': self.users[peer][0],
                                               'button_name': button_name})
