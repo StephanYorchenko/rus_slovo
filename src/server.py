@@ -210,7 +210,7 @@ class Server:
         """ Запускаем тест по орфоэпии"""
 
         assert isinstance(index, int), "Wrong index value (must be int())"
-        self.users[peer][1] = orfoepy_back.Task(peer, index)
+        self.users[peer][1] = orfoepy_back.OrthoepyTask(peer, index)
         self.send_msg(peer, start=True)
 
     def start_grammar_task(self, peer):

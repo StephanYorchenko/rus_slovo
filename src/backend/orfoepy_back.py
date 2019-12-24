@@ -52,7 +52,7 @@ class Question:
         return f'<{self.word}----{self.answer}>'
 
 
-class Task:
+class OrthoepyTask:
     def __init__(self, peer=0, task=0):
         self.task = self.question_creator(self.selector(task), peer) if task else 0
         self.current_task = 0
