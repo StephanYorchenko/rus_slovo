@@ -19,36 +19,11 @@ class OrthographyQuestion:
         return self.answer == answer
 
     def get_json_keyboard(self):
-        result_dict = {'one_time': False,
-                       'buttons': [
-                           [
-                               {
-                                   "action": {
-                                       "type": "text",
-                                       "label": self.buttons[0]
-                                   },
-                                   "color": "default"
-                               }
-                           ],
-                           [
-                               {
-                                   "action": {
-                                       "type": "text",
-                                       "label": self.buttons[1]
-                                   },
-                                   "color": "default"
-                               }
-                           ],
-                           [
-                               {
-                                   'action': {
-                                       'type': 'text',
-                                       'label': 'Стоп'
-                                   },
-                                   'color': 'negative'
-                               }
-                           ]
-                       ]}
+        with open("orth.json", "r", encoding="utf-8") as keyboard_file:
+            result_dict = json.loads(keyboard_file.read())
+            result_dict['buttons'][0]["action"]["label"] = self.buttons[0]
+            result_dict['buttons'][1]["action"]["label"] = self.buttons[1]
+
         with open(f'keyboards/{self.peer}.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
