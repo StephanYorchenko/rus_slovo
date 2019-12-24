@@ -26,34 +26,23 @@ class Question:
         random.shuffle(res_list)
         return res_list
 
-    def get_json_keyboard(self, exit_but=False):
+    def get_json_keyboard(self, exit_button=False):
         result_dict = {'one_time': False,
                        'buttons': []}
         for i in self.list_answers:
             print(i)
-            k = [{
-                "action": {
-                    "type": "text",
-                    "label": i
-                },
+            answer_button = [{
+                "action": {"type": "text", "label": i},
                 "color": "default"
             }]
-            result_dict['buttons'].append(k)
-        if exit_but:
-            exit = [
-                {
-                    'action': {
-                        'type': 'text',
-                        'label': 'Стоп'
-                    },
-                    'color': 'negative'
-                }
-            ]
-            result_dict['buttons'].append(exit)
+            result_dict['buttons'].append(answer_button)
+        if exit_button:
+            result_dict['buttons'].append([{'action': {'type': 'text', 'label': 'Стоп'}, 'color': 'negative'}])
         with open(f'keyboards/{self.peer}.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
     def check(self, answer):
+        # TODO: remove crutch!
         if answer != 'электропрОвод' or answer != 'электропровОд':
             return [answer == self.answer, 3]
         else:
@@ -79,27 +68,3 @@ class Task:
     @staticmethod
     def question_creator(array, peer):
         return [Question(i[0], peer) for i in array]
-
-
-class UserDict(dict):
-    def __init__(self):
-        super().__init__()
-
-    def __getitem__(self, peer_id):
-        if peer_id not in self.keys():
-            self[peer_id] = [-1, Task(), 0, 0]
-        return super().__getitem__(peer_id)
-
-    def __str__(self):
-        return f'<------ {len(self.keys())} records---->'
-
-    def get_next_stat(self, peer, button_name):
-        """
-        Getting new users position in menu
-        :param peer: peer of user, takes from vk_api
-        :param button_name: name of clicked button from current UI
-        :change: current position of user in UI
-        """
-        data_base = ss.DataSource(r'src/controllers')
-        self[peer][0] = data_base.sql_select('Buttons', ['next_stat'], {'current_stat': self[peer][0],
-                                                                        'button_name': button_name})

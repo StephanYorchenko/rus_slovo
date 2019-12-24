@@ -9,7 +9,7 @@ from src.backend import orfoepy_back
 import src.backend.grammar_norms as gm
 import src.backend.orthography_back as ob
 import src.backend.sql_selections as ss
-
+from src.backend.user_dict import UserDict
 
 class Server:
     keyboards = {0: ['keyboards/keyboard_home.json', 'Вы находитесь в главном меню'],
@@ -26,7 +26,7 @@ class Server:
                  13: ['keyboards/keyboard_mode_dictation.json', 'Потренируемся или напишем контрольную?']
                  }
 
-    users = orfoepy_back.UserDict()
+    users = UserDict()
 
     def __init__(self, token, group_id):
         self.vk = vk_api.VkApi(token=token)
@@ -103,7 +103,7 @@ class Server:
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
 
                 elif self.users[peer][0] == 5:
-                    self.users[peer][1].task[0].get_json_keyboard(exit_but=True)
+                    self.users[peer][1].task[0].get_json_keyboard(exit_button=True)
                     self.send_msg(peer, self.users[peer][1].task[0].word)
                     self.users[peer][0] = 6
                 elif self.users[peer][0] == 6:
@@ -122,7 +122,7 @@ class Server:
                         self.users[peer][1].current_task += 1
                         if self.users[peer][1].current_task < 32:
                             kk = self.users[peer][1].current_task
-                            self.users[peer][1].task[kk].get_json_keyboard(exit_but=True)
+                            self.users[peer][1].task[kk].get_json_keyboard(exit_button=True)
                             self.send_msg(peer, self.users[peer][1].task[kk].word)
                         else:
                             self.users[peer][0] = 7
