@@ -21,8 +21,8 @@ class OrthographyQuestion:
     def get_json_keyboard(self):
         with open("src/backend/orth.json", "r", encoding="utf-8") as keyboard_file:
             result_dict = json.loads(keyboard_file.read())
-            result_dict['buttons'][0]["action"]["label"] = self.buttons[0]
-            result_dict['buttons'][1]["action"]["label"] = self.buttons[1]
+            result_dict['buttons'][0][0]["action"]["label"] = self.buttons[0]
+            result_dict['buttons'][1][0]["action"]["label"] = self.buttons[1]
 
         with open(f'keyboards/{self.peer}.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
