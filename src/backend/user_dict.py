@@ -11,7 +11,7 @@ class UserDict(dict):
         return super().__getitem__(peer_id)
 
     def __str__(self):
-        return f'<------ {len(self.keys())} records---->'
+        return f'<----{len(self.keys())} records---->'
 
     def get_next_status(self, peer, button_name):
         """
@@ -22,6 +22,7 @@ class UserDict(dict):
         """
         data_base = DataSource(r'src/controllers')
         self[peer][0] = data_base.sql_select(
-            'Buttons', ['next_stat'],
+            'Buttons',
+            ['next_stat'],
             {'current_stat': self[peer][0], 'button_name': button_name}
         )
