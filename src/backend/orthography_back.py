@@ -19,7 +19,7 @@ class OrthographyQuestion:
         return self.answer == answer
 
     def get_json_keyboard(self):
-        with open("orth.json", "r", encoding="utf-8") as keyboard_file:
+        with open("src/backend/orth.json", "r", encoding="utf-8") as keyboard_file:
             result_dict = json.loads(keyboard_file.read())
             result_dict['buttons'][0]["action"]["label"] = self.buttons[0]
             result_dict['buttons'][1]["action"]["label"] = self.buttons[1]
