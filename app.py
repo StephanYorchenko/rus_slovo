@@ -1,7 +1,3 @@
-from flask import Flask
+server1 = Server(token, group_id)
 
-app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello from Flask'
+server1.start()

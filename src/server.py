@@ -1,3 +1,5 @@
+import sqlite3
+
 import vk_api
 
 from vk_api.bot_longpoll import VkBotLongPoll
@@ -6,7 +8,8 @@ from vk_api.bot_longpoll import VkBotEventType
 from src.backend import orfoepy_back
 import src.backend.grammar_norms as gm
 import src.backend.orthography_back as ob
-
+import src.backend.sql_selections as ss
+from src.backend.user_dict import UserDict
 
 class Server:
     keyboards = {0: ['keyboards/keyboard_home.json', 'Вы находитесь в главном меню'],
@@ -23,14 +26,7 @@ class Server:
                  13: ['keyboards/keyboard_mode_dictation.json', 'Потренируемся или напишем контрольную?']
                  }
 
-    users = orfoepy_back.UserDict()
-
-    back_button = {1: 0,
-                   3: 1,
-                   4: 3,
-                   9: 8,
-                   8: 0,
-                   13: 1}
+    users = UserDict()
 
     def __init__(self, token, group_id):
         self.vk = vk_api.VkApi(token=token)
@@ -93,69 +89,21 @@ class Server:
                         self.send_msg(peer, keyboard_index=2)
                         self.keyboards[2][1] = 'Разработано DvaTopora'
                         self.users[peer][0] = 0
-                    if event.object.text == 'Диктант' and not self.users[peer][0]:
-                        self.users[peer][0] = 1
-                    elif event.object.text == 'Орфографический' and self.users[peer][0] == 1:
-                        self.users[peer][0] = 13
-                    elif event.object.text == 'Тренировка' and self.users[peer][0] == 13:
-                        self.start_orthography(peer)
-                        self.users[peer][0] = 14
-                        self.send_msg(peer, start=True)
-                        continue
-                    elif event.object.text == "Грамматика" and not self.users[peer][0]:
-                        self.users[peer][0] = 8
-                    elif event.object.text == 'О боте' and not self.users[peer][0]:
-                        self.send_msg(peer, keyboard_index=2)
-                    elif event.object.text == 'Орфоэпический' and self.users[peer][0] == 1:
-                        self.users[peer][0] = 3
-                    elif self.users[peer][0] == 3 and event.object.text == 'Тренировка':
-                        self.users[peer][0] = 4
-                    elif event.object.text == 'Назад' and self.users[peer][0] in self.back_button.keys():
-                        self.users[peer][0] = self.back_button[self.users[peer][0]]
-                    elif self.users[peer][0] == 4:
-                        a = ["Августовский ... занял",
-                             "Заняла ... нарвала",
-                             "Нарост ... предложу",
-                             "Премировать... электропровод"]
+                    else:
                         try:
-                            res = a.index(event.object.text)
-                            self.start_orthoepy_cont(res + 1, peer)
-                            self.users[peer][0] = 5
-                            self.send_msg(peer, start=True)
-                            continue
-                        except ValueError:
-                            self.send_msg(peer, 'А виртуальную клавиатуру для кого придумали?', 2)
-                    elif self.users[peer][0] == 7:
-                        if event.object.text == "Попробовать заново":
-                            self.users[peer][0] = 4
-                        else:
-                            self.users[peer][0] = 0
-                    elif self.users[peer][0] == 8 and event.object.text == "Грамматические нормы":
-                        self.users[peer][0] = 9
-                    elif self.users[peer][0] == 9 and event.object.text == 'Тренировка':
-                        self.start_grammar_task(peer)
-                        self.users[peer][0] = 10
-                        self.send_msg(peer, start=True)
-                        continue
-                    elif self.users[peer][0] == 12:
-                        if event.object.text == "Попробовать заново":
-                            self.start_grammar_task(peer)
-                            self.users[peer][0] = 10
-                            self.send_msg(peer, start=True)
-                            continue
-                        else:
-                            self.users[peer][0] = 0
-
-                    elif self.users[peer][0] == 16:
-                        if event.object.text == "Попробовать заново":
-                            self.users[peer][0] = 13
-                        else:
-                            self.users[peer][0] = 0
+                            next_stat, execute, cont = self.get_action(peer, event.object.text)
+                            print(next_stat, execute)
+                            self.users[peer][0] = next_stat
+                            exec(execute)
+                            if cont:
+                                continue
+                        except IndexError:
+                            pass
 
                     self.send_msg(peer, keyboard_index=self.users[peer][0])
 
                 elif self.users[peer][0] == 5:
-                    self.users[peer][1].task[0].get_json_keyboard(exit_but=True)
+                    self.users[peer][1].task[0].get_json_keyboard(exit_button=True)
                     self.send_msg(peer, self.users[peer][1].task[0].word)
                     self.users[peer][0] = 6
                 elif self.users[peer][0] == 6:
@@ -174,7 +122,7 @@ class Server:
                         self.users[peer][1].current_task += 1
                         if self.users[peer][1].current_task < 32:
                             kk = self.users[peer][1].current_task
-                            self.users[peer][1].task[kk].get_json_keyboard(exit_but=True)
+                            self.users[peer][1].task[kk].get_json_keyboard(exit_button=True)
                             self.send_msg(peer, self.users[peer][1].task[kk].word)
                         else:
                             self.users[peer][0] = 7
@@ -257,21 +205,35 @@ class Server:
 
         return self.vk_api.users.get(user_id=user_id)[0]['first_name']
 
-    def start_orthoepy_cont(self, index, peer):
+    def start_orthoepy_task(self, index, peer):
 
         """ Запускаем тест по орфоэпии"""
 
-        assert isinstance(index, int)
-        self.users[peer][1] = orfoepy_back.Task(peer, index)
+        assert isinstance(index, int), "Wrong index value (must be int())"
+        self.users[peer][1] = orfoepy_back.OrthoepyTask(peer, index)
+        self.send_msg(peer, start=True)
 
     def start_grammar_task(self, peer):
 
         """ Запускаем тест по грамматическим нормам"""
 
         self.users[peer][1] = gm.GrammarTask(peer)
+        self.send_msg(peer, start=True)
 
-    def start_orthography(self, peer):
+    def start_orthography_task(self, peer):
 
         """ Запускаем тест по орфографии"""
 
         self.users[peer][1] = ob.OrthographyTask(peer)
+        self.send_msg(peer, start=True)
+
+    def get_action(self, peer, button_name):
+
+        """ Getting data from database """
+
+        data = ss.DataSource(r'src/controllers')
+        next_stat, execute, cont = data.sql_select('Button',
+                                             ['next_stat', 'execute', 'continue'],
+                                             {'cur_stat': self.users[peer][0],
+                                              'button_name': button_name})[0]
+        return next_stat, execute, cont

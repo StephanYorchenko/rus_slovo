@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import random
-import sqlite3
 import json
+
+import src.backend.sql_selections as ss
 
 
 class OrthographyQuestion:
@@ -18,36 +19,11 @@ class OrthographyQuestion:
         return self.answer == answer
 
     def get_json_keyboard(self):
-        result_dict = {'one_time': False,
-                       'buttons': [
-                           [
-                               {
-                                   "action": {
-                                       "type": "text",
-                                       "label": self.buttons[0]
-                                   },
-                                   "color": "default"
-                               }
-                           ],
-                           [
-                               {
-                                   "action": {
-                                       "type": "text",
-                                       "label": self.buttons[1]
-                                   },
-                                   "color": "default"
-                               }
-                           ],
-                           [
-                               {
-                                   'action': {
-                                       'type': 'text',
-                                       'label': 'Стоп'
-                                   },
-                                   'color': 'negative'
-                               }
-                           ]
-                       ]}
+        with open("src/backend/orth.json", "r", encoding="utf-8") as keyboard_file:
+            result_dict = json.loads(keyboard_file.read())
+            result_dict['buttons'][0][0]["action"]["label"] = self.buttons[0]
+            result_dict['buttons'][1][0]["action"]["label"] = self.buttons[1]
+
         with open(f'keyboards/{self.peer}.json', 'w', encoding='UTF-8') as f:
             f.write(json.dumps(result_dict, indent=4, ensure_ascii=False))
 
@@ -66,13 +42,8 @@ class OrthographyTask:
 
     @staticmethod
     def select_task():
-        con = sqlite3.connect(r'src/rus_slovo.db')
-        sql = f"SELECT word, answer, wrong FROM orthography WHERE type_task=1"
-        # TODO: check what is wrong with select where type is given???
-        cur = con.cursor()
-        c = list(cur.execute(sql))
-        random.shuffle(c)
-        cur.fetchall()
-        cur.close()
-        con.close()
-        return c[:10]
+        data = ss.DataSource(r'src/rus_slovo.db')
+        result = data.sql_select('orthography', ['word', 'answer', 'wrong'], {'type_task': 1})
+        random.shuffle(result)
+        return result[:10]
+

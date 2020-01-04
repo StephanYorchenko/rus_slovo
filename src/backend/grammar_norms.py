@@ -1,7 +1,7 @@
 import json
-import sqlite3
 import random
 
+import src.backend.sql_selections as ss
 
 
 class GrammarQuestion:
@@ -64,14 +64,10 @@ class GrammarTask:
 
     @staticmethod
     def selector():
-        with sqlite3.connect(r'src/rus_slovo.db') as con:
-            sql = "SELECT word1, type_word2, answer_right, answer_wrong FROM Grammatical_Norms"
-            cur = con.cursor()
-            c = list(cur.execute(sql))
-            random.shuffle(c)
-            cur.fetchall()
-            cur.close()
-        return c[:16]
+        data = ss.DataSource(r'src/rus_slovo.db')
+        result = data.sql_select('Grammatical_Norms', ['word1', 'type_word2', 'answer_right', 'answer_wrong'])
+        random.shuffle(result)
+        return result[:16]
 
     @staticmethod
     def task_creator(array, peer):
@@ -80,4 +76,3 @@ class GrammarTask:
                                 item[3],
                                 item[1],
                                 peer) for item in array]
-
