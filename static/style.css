@@ -9,13 +9,24 @@
 }
 
 .card{
-	min-height: 170px;
-	min-width: 200px;
+	height: 170px;
+	width: 170px;
 }
 
 .container{
 	overflow-x: scroll;
-    overflow-y: inherit;
+    overflow-y: hidden;
 	height: 200px;
     display: flex;
+}
+
+.card-body{
+    height: 100%
+}
+img {
+    height: 100%;
+}
+
+.card-title{
+    font-size: 64px;
 }
