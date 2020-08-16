@@ -12,6 +12,28 @@
         <title>DataTagger</title>
     </head>
     <body>
+        {% if session['name'] %}
+            <nav class="pos-f-t navbar navbar-dark fixed-top" style="background: #151719">
+                <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='main.png') }}" alt="" height="32px">Главная</a>
+                <ul class="ml-auto">
+                    <li class="nav-item dropdown nav-link" style="margin-right: 1em !important; color: #f5f5f5">
+                        <div class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{session['name']}}
+                        </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                           {% if session["role"] == 0 %}
+                               <a class="dropdown-item" href="/admin">Админка</a>
+                               <div class="dropdown-divider"></div>
+                           {% endif%}
+                           <a class="dropdown-item" href="/logout" >Выйти</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        {% endif %} 
         {% block content %}{% endblock %}
     </body>
 </html>
+
+
+

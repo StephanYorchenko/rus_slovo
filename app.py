@@ -19,6 +19,7 @@ def load_user(id):
     user = DBUser.get_user(id=int(id))
     session['role'] = user.role
     session['name'] = user.name
+    print(session['name'])
     return user
 
 bootsrap = Bootstrap(app)

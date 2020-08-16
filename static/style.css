@@ -8,3 +8,14 @@
     width: 63%
 }
 
+.card{
+	min-height: 170px;
+	min-width: 200px;
+}
+
+.container{
+	overflow-x: scroll;
+    overflow-y: inherit;
+	height: 200px;
+    display: flex;
+}
