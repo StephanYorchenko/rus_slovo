@@ -8,14 +8,14 @@ Base = declarative_base()
 
 
 class DBClass(Base):
-    """docstring for DBClass."""
+    __tablename__ = 'class'
 
     id = Column(Integer, primary_key=True)
     name = Column(Text, nullable=False)
 
     @staticmethod
-	def get_class(**kwargs):
-		s = db_session()
-		class_ = s.query(DBClass).filter_by(**kwargs).first()
-		s.close()
-		return class_
+    def get_class(**kwargs):
+        s = db_session()
+        class_ = s.query(DBClass).filter_by(**kwargs).first()
+        s.close()
+        return class_
