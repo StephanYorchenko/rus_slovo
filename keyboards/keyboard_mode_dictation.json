@@ -7,14 +7,7 @@
         "label": "Тренировка"
       },
       "color": "positive"
-    },
-      {
-        "action": {
-          "type": "text",
-          "label": "Формат ЕГЭ"
-        },
-        "color": "positive"
-      }],
+    }],
     [{
       "action": {
         "type": "text",
