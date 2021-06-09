@@ -4,7 +4,7 @@ certifi==2019.3.9
 chardet==3.0.4
 enum34==1.1.6
 idna==2.8
-pip==19.0.3
+pip==19.2
 requests==2.21.0
 setuptools==40.8.0
 six==1.12.0
